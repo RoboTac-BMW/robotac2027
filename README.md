@@ -3,7 +3,7 @@ workshop website
 
 ## Website structure
 
-- Main page: `/home/runner/work/robotac2027/robotac2027/index.html`
+- Main page: `/home/runner/work/robotac2027/robotac2027/robotac_2027_workshop_benchmark_portal.html`
 - Images folder: `/home/runner/work/robotac2027/robotac2027/assets/images/`
 
 ## Updating speakers
