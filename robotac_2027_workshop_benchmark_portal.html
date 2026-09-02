@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboTac 2027 | Benchmarking Tactile Intelligence for Grasping & Manipulation</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            900: '#0f172a',
+                        },
+                        accent: {
+                            500: '#059669',
+                            600: '#047857',
+                        },
+                        amber: {
+                            500: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Chart Containers */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Chosen Palette: Warm Minimalist Slate & Tech Blue ( Slate 50/900, Brand Blue #2563eb, Emerald #059669, Amber #d97706 ) -->
+    <!-- Application Structure Plan:
+         1. Header & Dynamic Navigation: Sticky header with active tab indication and quick CTAs (OpenReview Submission & Hardware Grant Application).
+         2. Hero Section: Direct announcement of RoboTac 2027 at ICRA 2027 in Seoul with countdown timer and key stats banner.
+         3. Scientific Motivation & Vision: Interactive comparison between Vision-Only World Models vs Visuo-Tactile World Models (VT-WM), dynamic chart for predictive fidelity.
+         4. Benchmark Challenge Operations Center: Detailed timeline, 20 Daimon Hardware allocation tracker, interactive RobOmni simulation parameters inspector, and evaluation criteria metrics breakdown.
+         5. Hardware Ecosystem Deep Dive: Interactive specs viewer for Daimon DM-DataClaw and DM-TacClaw platforms with real product images, tactile video tensor format decoder (uint16 -> float convertor visualizer), and hardware grant request modal simulator.
+         6. Interactive Program Schedule: Filterable timeline (Keynotes, Orals, Demos, Benchmark Showcase) with real-time detail modal.
+         7. Call for Papers & Guidelines: Topics, paper format, direct link to OpenReview submission (forum?id=xkAKGJMNir), and template guides.
+         8. Committee & Contact: Organizing committee profiles (Prof. Dr. Mohsen Kaboli, TU/e & BMW Group) and direct inquiry form.
+    -->
+    <!-- Visualization & Content Choices:
+         - Visual/Tactile Comparison Chart -> Goal: Compare -> Interactive Chart.js Line Plot showing roll-out prediction error over time for Vision-only vs VT-WM.
+         - Sim-to-Real Benchmark Criteria -> Goal: Inform/Organize -> Interactive Radar/Bar chart showing evaluation dimensions (Grasping, Wiping, Assembly, Friction/Slip).
+         - Sensor Modalities Inspector -> Goal: Interactivity -> Custom HTML/Canvas simulator for Deformation, Shear, and Depth tactile heatmap streams.
+         - Tensor Decoder Tool -> Goal: Education/Utility -> Interactive JS widget demonstrating uint16 to normalized float matrix transformation.
+         - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. Visual markers use Unicode characters and CSS layout components.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-slate-900 text-slate-300 text-xs md:text-sm py-2 px-4 text-center border-b border-slate-800 flex flex-wrap justify-center items-center gap-2">
+        <span class="inline-block bg-amber-500/20 text-amber-400 font-semibold px-2 py-0.5 rounded border border-amber-500/30">
+            &#9733; Benchmark Hardware Grant
+        </span>
+        <span>20 Daimon Hardware Sets (DM-DataClaw &amp; DM-TacClaw) available for global research labs!</span>
+        <a href="#benchmark" class="underline hover:text-white font-medium ml-1">Learn &amp; Apply &#8594;</a>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg bg-brand-600 text-white flex items-center justify-center font-black text-xl shadow-inner">
+                    RT
+                </div>
+                <div>
+                    <span class="font-bold text-lg text-slate-900 tracking-tight leading-none block">RoboTac 2027</span>
+                    <span class="text-xs text-slate-500 font-medium leading-none block mt-1">ICRA 2027 Workshop &#8226; Seoul</span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium text-slate-600">
+                <a href="#overview" class="hover:text-brand-600 transition-colors">Overview</a>
+                <a href="#motivation" class="hover:text-brand-600 transition-colors">Motivation</a>
+                <a href="#benchmark" class="hover:text-brand-600 transition-colors">Benchmark</a>
+                <a href="#hardware" class="hover:text-brand-600 transition-colors">Hardware &amp; Sim</a>
+                <a href="#cfp" class="hover:text-brand-600 transition-colors">Call for Papers</a>
+                <a href="#program" class="hover:text-brand-600 transition-colors">Schedule</a>
+                <a href="#organizers" class="hover:text-brand-600 transition-colors">Committee</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <a href="https://openreview.net/forum?id=xkAKGJMNir" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center px-3.5 py-2 rounded-lg text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 transition shadow">
+                    <span>OpenReview Submission</span>
+                    <span class="ml-1 text-slate-400">&#8599;</span>
+                </a>
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none">
+                    <span class="text-2xl">&#9776;</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-4 space-y-2 text-sm font-medium text-slate-700">
+            <a href="#overview" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-600">Overview</a>
+            <a href="#motivation" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-600">Scientific Motivation</a>
+            <a href="#benchmark" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-600">Sim-to-Real Benchmark</a>
+            <a href="#hardware" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-600">Hardware &amp; Sim-Environment</a>
+            <a href="#cfp" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-600">Call for Papers</a>
+            <a href="#program" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-600">Program &amp; Schedule</a>
+            <a href="#organizers" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-600">Organizing Committee</a>
+            <a href="https://openreview.net/forum?id=xkAKGJMNir" target="_blank" class="block py-2.5 text-center bg-slate-900 text-white rounded-md mt-2 font-semibold">OpenReview Portal &#8599;</a>
+        </div>
+    </header>
+
+    <main class="space-y-20 pb-20">
+
+        <!-- HERO SECTION -->
+        <section id="overview" class="relative bg-slate-900 text-white pt-12 pb-20 overflow-hidden">
+            <!-- Background Accent Patterns using HTML/CSS -->
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:24px_24px]"></div>
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 border border-brand-400/30 text-brand-300 text-xs font-semibold uppercase tracking-wider">
+                            <span>&#128204; IEEE ICRA 2027 Workshop Series</span>
+                            <span>&#8226;</span>
+                            <span>Seoul, South Korea</span>
+                        </div>
+
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                            RoboTac 2027: Benchmarking Tactile Intelligence for Grasping &amp; Manipulation
+                        </h1>
+
+                        <p class="text-lg text-slate-300 font-light leading-relaxed">
+                            <span class="font-semibold text-white">Emerging Tactile World Models for Embodied Robotics.</span> Advancing physical intelligence through coordinated sim-to-real benchmarks, high-fidelity tactile hardware, and predictive world dynamics.
+                        </p>
+
+                        <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700/60 backdrop-blur-sm space-y-2">
+                            <div class="flex justify-between items-center text-xs text-slate-400">
+                                <span>&#128197; Date: May 24 or May 28, 2027</span>
+                                <span>&#128205; COEX Convention Center, Seoul</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="text-amber-400 text-sm font-medium">&#9200; Benchmark Hardware Grant Countdown:</div>
+                                <div id="countdown-display" class="font-mono text-sm font-bold text-white bg-slate-900 px-2.5 py-1 rounded border border-slate-700">
+                                    Calculating...
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-4 pt-2">
+                            <a href="#benchmark-apply" onclick="openHardwareModal()" class="px-6 py-3 rounded-lg text-sm font-bold bg-brand-600 text-white hover:bg-brand-500 transition shadow-lg shadow-brand-600/30">
+                                Apply for Hardware Grant (20 Sets)
+                            </a>
+                            <a href="https://openreview.net/forum?id=xkAKGJMNir" target="_blank" class="px-6 py-3 rounded-lg text-sm font-bold bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 transition">
+                                OpenReview Paper Portal &#8599;
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Hero Quick Data Summary Card -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-2xl space-y-6">
+                            <div class="border-b border-slate-700 pb-4">
+                                <h3 class="text-sm font-semibold uppercase tracking-wider text-brand-400">Benchmark at a Glance</h3>
+                                <p class="text-xs text-slate-400 mt-1">Coordinated international sim-to-real evaluation initiative</p>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-slate-900/60 p-3.5 rounded-xl border border-slate-700/50">
+                                    <div class="text-2xl font-black text-brand-400">20</div>
+                                    <div class="text-xs text-slate-300 font-medium">Global Labs Sponsored</div>
+                                    <div class="text-[10px] text-slate-500 mt-1">Free DM Hardware Kits</div>
+                                </div>
+                                <div class="bg-slate-900/60 p-3.5 rounded-xl border border-slate-700/50">
+                                    <div class="text-2xl font-black text-accent-500">3 Months</div>
+                                    <div class="text-xs text-slate-300 font-medium">Pre-ICRA Hardware Access</div>
+                                    <div class="text-[10px] text-slate-500 mt-1">For Data &amp; Policy Training</div>
+                                </div>
+                                <div class="bg-slate-900/60 p-3.5 rounded-xl border border-slate-700/50">
+                                    <div class="text-2xl font-black text-amber-400">RobOmni</div>
+                                    <div class="text-xs text-slate-300 font-medium">Isaac Sim Digital Twin</div>
+                                    <div class="text-[10px] text-slate-500 mt-1">1:1 DM-TacClaw Environment</div>
+                                </div>
+                                <div class="bg-slate-900/60 p-3.5 rounded-xl border border-slate-700/50">
+                                    <div class="text-2xl font-black text-purple-400">9th</div>
+                                    <div class="text-xs text-slate-300 font-medium">Workshop Edition</div>
+                                    <div class="text-[10px] text-slate-500 mt-1">Legacy of Tactile Excellence</div>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700/80 text-xs text-slate-300 space-y-1">
+                                <div class="font-semibold text-white flex items-center justify-between">
+                                    <span>Primary Hardware Platforms:</span>
+                                    <span class="text-brand-400">Daimon Robotics</span>
+                                </div>
+                                <div class="text-slate-400">• DM-DataClaw (Handheld Multimodal UMI)</div>
+                                <div class="text-slate-400">• DM-TacClaw (Actuated Tactile Robotic Gripper)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ABSTRACT & HISTORICAL EVOLUTION -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl p-6 md:p-10 border border-slate-200 shadow-sm space-y-8">
+                
+                <div class="max-w-3xl space-y-3">
+                    <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Workshop Abstract</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900">
+                        Bridging Physical Interaction with Tactile World Models
+                    </h2>
+                    <p class="text-slate-600 text-sm md:text-base leading-relaxed">
+                        Touch provides robots with direct access to physical interaction, revealing contact, force, friction, slip, compliance, deformation, and object dynamics that cannot always be inferred from vision alone. As robotics moves toward Embodied AI and Physical AI, an emerging challenge is to develop <strong>Tactile World Models</strong> that enable robots not only to perceive contact, but to learn the dynamics of physical interaction, predict the consequences of their actions, and use these predictions for adaptive grasping and manipulation.
+                    </p>
+                </div>
+
+                <!-- Evolution Interactive Step Matrix -->
+                <div class="border-t border-slate-100 pt-8 space-y-4">
+                    <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider">Evolution of the RoboTac Workshop Series</h3>
+                    <p class="text-xs text-slate-500">Click on any evolutionary phase to inspect the scientific milestone:</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                        <button onclick="showEvolutionDetail('p1')" class="text-left p-4 rounded-xl border border-slate-200 bg-slate-50 hover:bg-brand-50 hover:border-brand-300 transition focus:ring-2 focus:ring-brand-500">
+                            <div class="text-xs font-bold text-slate-400">Phase 1</div>
+                            <div class="font-bold text-slate-900 text-sm mt-1">Foundational Tactile Sensing</div>
+                            <div class="text-xs text-slate-500 mt-2">Perception, hardware design, &amp; basic classification.</div>
+                        </button>
+
+                        <button onclick="showEvolutionDetail('p2')" class="text-left p-4 rounded-xl border border-slate-200 bg-slate-50 hover:bg-brand-50 hover:border-brand-300 transition focus:ring-2 focus:ring-brand-500">
+                            <div class="text-xs font-bold text-slate-400">Phase 2</div>
+                            <div class="font-bold text-slate-900 text-sm mt-1">Visuo-Tactile Integration</div>
+                            <div class="text-xs text-slate-500 mt-2">Active inference, predictive coding, &amp; cross-modal alignment.</div>
+                        </button>
+
+                        <button onclick="showEvolutionDetail('p3')" class="text-left p-4 rounded-xl border border-slate-200 bg-slate-50 hover:bg-brand-50 hover:border-brand-300 transition focus:ring-2 focus:ring-brand-500">
+                            <div class="text-xs font-bold text-slate-400">Phase 3</div>
+                            <div class="font-bold text-slate-900 text-sm mt-1">Data-Driven Manipulation</div>
+                            <div class="text-xs text-slate-500 mt-2">Reinforcement learning, contact-rich control, &amp; feedback loops.</div>
+                        </button>
+
+                        <button onclick="showEvolutionDetail('p4')" class="text-left p-4 rounded-xl border border-brand-300 bg-brand-50/60 ring-2 ring-brand-500/20 text-left p-4 rounded-xl transition">
+                            <div class="text-xs font-bold text-brand-600">Phase 4 (RoboTac 2027)</div>
+                            <div class="font-bold text-brand-900 text-sm mt-1">Tactile World Models</div>
+                            <div class="text-xs text-brand-700 mt-2">Embodied AI, Sim-to-Real Benchmarking, &amp; Physical Foundation Models.</div>
+                        </button>
+                    </div>
+
+                    <!-- Dynamic detail card -->
+                    <div id="evolution-detail-box" class="p-4 bg-slate-900 text-slate-200 rounded-xl text-xs md:text-sm font-mono border border-slate-800">
+                        <span class="text-brand-400 font-bold">[Current Focus: Phase 4]</span> RoboTac 2027 introduces international benchmarking with 20 sponsored hardware sets and the RobOmni simulation environment to evaluate Visuo-Tactile World Models under complex multi-contact physics.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SCIENTIFIC MOTIVATION & COMPARATIVE ANALYSIS -->
+        <section id="motivation" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Scientific Motivation</span>
+                <h2 class="text-3xl font-extrabold text-slate-900">
+                    Why Vision Is Not Enough: The Tactile Simulation Gap
+                </h2>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Visual perception suffers from severe line-of-sight occlusions during contact-rich tasks like bimanual assembly, wiping, or gripping delicate objects. Vision cannot measure shear force, friction distribution, or minute surface deformation. Visuo-Tactile World Models (VT-WM) close this gap by learning true interaction dynamics in latent space.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Interactive Chart Block -->
+                <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex flex-wrap justify-between items-center gap-2 border-b border-slate-100 pb-3">
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">Long-Horizon Rollout Prediction Error</h3>
+                            <p class="text-xs text-slate-500">Comparing Latent State Error over Manipulation Timesteps</p>
+                        </div>
+                        <div class="flex items-center space-x-2 text-xs">
+                            <button onclick="updateChartDataset('slippage')" class="px-2.5 py-1 rounded bg-brand-50 text-brand-700 font-medium border border-brand-200">Grasp Slippage</button>
+                            <button onclick="updateChartDataset('compliance')" class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 font-medium hover:bg-slate-200">Deformable Object</button>
+                        </div>
+                    </div>
+
+                    <!-- Chart Container as required -->
+                    <div class="chart-container">
+                        <canvas id="motivationChart"></canvas>
+                    </div>
+
+                    <p class="text-xs text-slate-500 italic text-center">
+                        * Quantitative evidence demonstrating how integrating tactile feedback into world models prevents exponential rollout divergence during unobserved contact events.
+                    </p>
+                </div>
+
+                <!-- Qualitative Insights Side Matrix -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-sm">&#10060;</span>
+                            <h4 class="font-bold text-slate-900 text-sm">Vision-Only Limitations</h4>
+                        </div>
+                        <ul class="text-xs text-slate-600 space-y-2 list-disc list-inside">
+                            <li><strong>Line-of-Sight Occlusion:</strong> Hand/gripper completely blocks object contact interfaces.</li>
+                            <li><strong>Force Blindness:</strong> Unable to observe shear, pressure, or frictional limits prior to slip.</li>
+                            <li><strong>Tactile Simulation Gap:</strong> Synthetic renders fail to replicate non-linear material compliance.</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-5 rounded-2xl bg-brand-900 text-white border border-brand-800 shadow-sm space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <span class="w-8 h-8 rounded-full bg-accent-500/20 text-accent-400 flex items-center justify-center font-bold text-sm">&#10004;</span>
+                            <h4 class="font-bold text-white text-sm">Visuo-Tactile World Models (VT-WM)</h4>
+                        </div>
+                        <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside">
+                            <li><strong>Unmediated Physical Access:</strong> Direct measurement of micro-geometries and contact dynamics.</li>
+                            <li><strong>Predictive Slippage Modeling:</strong> Latent states anticipate slip states 100ms before movement.</li>
+                            <li><strong>Active Inference &amp; Control:</strong> Real-time torque and positional adaptation during grasp execution.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BENCHMARK CHALLENGE SECTION -->
+        <section id="benchmark" class="bg-slate-900 text-white py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                
+                <div class="max-w-3xl space-y-4">
+                    <div class="inline-block bg-accent-500/20 text-accent-400 border border-accent-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase">
+                        International Sim-to-Real Challenge
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-white">
+                        The RoboTac 2027 Sim-to-Real Benchmark
+                    </h2>
+                    <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                        To systematically evaluate emerging Tactile World Models, RoboTac 2027 together with <strong>Daimon Robotics</strong> is distributing <strong>20 hardware sets</strong> to selected global academic and research laboratories. Teams will pre-train on the <strong>RobOmni Isaac Sim environment</strong> and validate on real physical hardware.
+                    </p>
+                </div>
+
+                <!-- 3 Pillar Infrastructure Grid -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    
+                    <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700/80 space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold text-xl">
+                            01
+                        </div>
+                        <h3 class="text-lg font-bold text-white">DM-DataClaw</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            A specialized Data-as-a-Service (DaaS) instrument engineered for unconstrained, handheld multimodal tactile demonstration and high-fidelity data collection across diverse environments without platform locking.
+                        </p>
+                        <div class="text-[11px] font-mono text-brand-400 pt-2 border-t border-slate-700">
+                            Modality: Stereo Vision + Wrist Fisheye + High-Density Tactile Array + 6-Axis IMU
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700/80 space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-accent-500/20 text-accent-400 flex items-center justify-center font-bold text-xl">
+                            02
+                        </div>
+                        <h3 class="text-lg font-bold text-white">DM-TacClaw</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            An electrically actuated tactile robotic gripper maintaining strict <strong>isomorphic structural parity</strong> to the DM-DataClaw, enabling zero-shot deployment of learned world models onto real physical arms.
+                        </p>
+                        <div class="text-[11px] font-mono text-accent-400 pt-2 border-t border-slate-700">
+                            Specs: 100mm stroke, 0.1mm position precision, uint16 raw tactile video output
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700/80 space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xl">
+                            03
+                        </div>
+                        <h3 class="text-lg font-bold text-white">RobOmni Isaac Sim</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Jointly engineered by Daimon Robotics and Galbot on NVIDIA Isaac Sim. Offers an exact 1:1 digital twin of the DM-TacClaw gripper with contact physics, shear modeling, and material compliance.
+                        </p>
+                        <div class="text-[11px] font-mono text-purple-400 pt-2 border-t border-slate-700">
+                            Platform: Public access for global community &amp; benchmarking participants
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Evaluation Dimensions Chart & Criteria -->
+                <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/60 space-y-6">
+                    <div class="flex flex-col md:flex-row justify-between md:items-center gap-4 border-b border-slate-700 pb-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Benchmark Evaluation Criteria &amp; Scoring Matrix</h3>
+                            <p class="text-xs text-slate-400">Submissions are evaluated across three standardized dimensions</p>
+                        </div>
+                        <button onclick="openHardwareModal()" class="px-4 py-2 bg-amber-500 text-slate-900 rounded-lg text-xs font-bold hover:bg-amber-400 transition">
+                            Submit Hardware Grant Application &#8594;
+                        </button>
+                    </div>
+
+                    <div class="grid lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-6 space-y-4">
+                            <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-700/80">
+                                <h4 class="font-bold text-brand-400 text-sm">1. Simulated Control Efficacy (30%)</h4>
+                                <p class="text-xs text-slate-300 mt-1">Success rate, execution velocity, and contact stability within RobOmni Isaac Sim across standardized grasping, wiping, and assembly tasks.</p>
+                            </div>
+                            <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-700/80">
+                                <h4 class="font-bold text-accent-400 text-sm">2. Sim-to-Real Generalization (40%)</h4>
+                                <p class="text-xs text-slate-300 mt-1">Zero-shot and few-shot transfer performance from digital twin to real DM-TacClaw hardware under unmodeled real-world friction and deformability.</p>
+                            </div>
+                            <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-700/80">
+                                <h4 class="font-bold text-amber-400 text-sm">3. Predictive Fidelity Metrics (30%)</h4>
+                                <p class="text-xs text-slate-300 mt-1">Quantitative evaluation of latent state prediction accuracy for future tactile frames, shear vectors, and slip detection over 100+ timesteps.</p>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-6 bg-slate-900 p-4 rounded-xl border border-slate-700">
+                            <div class="chart-container">
+                                <canvas id="radarEvaluationChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- HARDWARE ECOSYSTEM & DATA FORMAT INSPECTOR -->
+        <section id="hardware" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Hardware &amp; Data Pipeline</span>
+                <h2 class="text-3xl font-extrabold text-slate-900">
+                    Daimon Robotics Hardware Ecosystem
+                </h2>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Designed with strict structural isomorphism between human data acquisition (DM-DataClaw) and robotic actuation (DM-TacClaw).
+                </p>
+            </div>
+
+            <!-- Hardware Cards Grid -->
+            <div class="grid lg:grid-cols-2 gap-8">
+                
+                <!-- DM-DataClaw -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="bg-slate-100 p-6 border-b border-slate-200 text-center relative">
+                            <img src="http://en.dmrobot.com/template/index/pc/images/product-6.jpg" alt="Daimon Robotics DM-DataClaw System" class="h-56 object-contain mx-auto rounded-lg shadow-sm bg-white p-2">
+                            <span class="absolute top-4 right-4 bg-brand-600 text-white text-[10px] font-bold px-2 py-1 rounded">Data Acquisition</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <h3 class="text-xl font-extrabold text-slate-900">DM-DataClaw</h3>
+                                <p class="text-xs text-slate-500 font-mono">Unconstrained Handheld Multimodal Tactile UMI</p>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Ultra-lightweight handheld system (~388g) for body-independent human manipulation demonstration. Captures synchronized visuo-tactile feeds and 6-axis spatial IMU trajectories without arm kinematics constraints.
+                            </p>
+
+                            <!-- Spec Table -->
+                            <div class="border border-slate-200 rounded-xl overflow-hidden text-xs">
+                                <div class="bg-slate-50 font-bold p-2 text-slate-700 border-b border-slate-200">Engineering Specifications</div>
+                                <div class="divide-y divide-slate-100">
+                                    <div class="p-2 flex justify-between"><span class="text-slate-500">Mass / Dimensions:</span><span class="font-mono text-slate-800">~388g | 215×124×172 mm</span></div>
+                                    <div class="p-2 flex justify-between"><span class="text-slate-500">Stroke / Angle:</span><span class="font-mono text-slate-800">0-100 mm | -35.5°</span></div>
+                                    <div class="p-2 flex justify-between"><span class="text-slate-500">Max Gripping Load:</span><span class="font-mono text-slate-800">2.0 kg force</span></div>
+                                    <div class="p-2 flex justify-between"><span class="text-slate-500">Vision System:</span><span class="font-mono text-slate-800">Stereo (1280×400@50FPS) + Fisheye</span></div>
+                                    <div class="p-2 flex justify-between"><span class="text-slate-500">Tactile Resolution:</span><span class="font-mono text-slate-800">10,000+ units/cm² Omnidirectional</span></div>
+                                    <div class="p-2 flex justify-between"><span class="text-slate-500">Battery &amp; Connectivity:</span><span class="font-mono text-slate-800">3.5-4.5h | Wi-Fi 6, USB 3.2, Ethernet</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DM-TacClaw -->
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="bg-slate-100 p-6 border-b border-slate-200 text-center relative">
+                            <!-- Styled Product Visual Representation using HTML/CSS Canvas -->
+                            <div class="h-56 bg-slate-900 rounded-lg flex flex-col items-center justify-center p-4 text-white space-y-3 shadow-inner">
+                                <div class="font-mono text-xs text-brand-400 font-bold">[ Isomorphic Actuated Hardware Twin ]</div>
+                                <div class="w-48 h-24 border-2 border-brand-500 rounded-xl flex justify-between items-center px-4 relative bg-slate-800">
+                                    <!-- Left Finger -->
+                                    <div class="w-8 h-16 bg-brand-600 rounded flex flex-col items-center justify-center text-[9px]">
+                                        <span>TAC</span>
+                                        <span class="text-[8px] text-brand-200">LEFT</span>
+                                    </div>
+                                    <!-- Middle Gap -->
+                                    <div class="text-[10px] text-slate-400 font-mono text-center">
+                                        100mm Stroke<br>
+                                        <span class="text-accent-400">0.1mm Precision</span>
+                                    </div>
+                                    <!-- Right Finger -->
+                                    <div class="w-8 h-16 bg-brand-600 rounded flex flex-col items-center justify-center text-[9px]">
+                                        <span>TAC</span>
+                                        <span class="text-[8px] text-brand-200">RIGHT</span>
+                                    </div>
+                                </div>
+                                <div class="text-[11px] text-slate-400">Electrically Actuated Tactile Robotic Gripper</div>
+                            </div>
+                            <span class="absolute top-4 right-4 bg-accent-600 text-white text-[10px] font-bold px-2 py-1 rounded">Execution Twin</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div>
+                                <h3 class="text-xl font-extrabold text-slate-900">DM-TacClaw</h3>
+                                <p class="text-xs text-slate-500 font-mono">Isomorphic Actuated Robotic Gripper</p>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Electrically driven gripper designed for direct mounting on industrial and collaborative robot arms. Provides position, velocity, and torque control with exact spatial alignment to the DM-DataClaw workspace fisheye view.
+                            </p>
+
+                            <!-- Spec Table -->
+                            <div class="border border-slate-200 rounded-xl overflow-hidden text-xs">
+                                <div class="bg-slate-50 font-bold p-2 text-slate-700 border-b border-slate-200">Engineering Specifications</div>
+                                <div class="divide-y divide-slate-100">
+                                    <div class="p-2 flex justify-between"><span class="text-slate-500">Positioning Precision:</span><span class="font-mono text-slate-800">0.1 mm precision control</span></div>
+                                    <div class="p-2 flex justify-between"><span class="text-slate-500">Tactile Modalities:</span><span class="font-mono text-slate-800">Deformation, Shear, &amp; Depth</span></div>
+                                    <div class="p-2 flex justify-between"><span class="text-slate-500">Native Raw Sensor:</span><span class="font-mono text-slate-800">384 × 288 Tactile Stream</span></div>
+                                    <div class="p-2 flex justify-between"><span class="text-slate-500">Onboard Video Pipeline:</span><span class="font-mono text-slate-800">640×480 RGB (gbrp16le) @ `.mov`</span></div>
+                                    <div class="p-2 flex justify-between"><span class="text-slate-500">Data Encoding:</span><span class="font-mono text-slate-800 font-bold text-amber-600">uint16 raw tensor format</span></div>
+                                    <div class="p-2 flex justify-between"><span class="text-slate-500">Dataset Compatibility:</span><span class="font-mono text-slate-800">LeRobot &amp; Daimon-Infinity (274.7K)</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- INTERACTIVE TENSOR DECODER & SENSOR INSPECTOR WIDGET -->
+            <div class="bg-slate-900 text-white p-6 md:p-8 rounded-2xl border border-slate-800 space-y-6">
+                <div class="flex flex-col md:flex-row justify-between md:items-center gap-4 border-b border-slate-800 pb-4">
+                    <div>
+                        <div class="inline-block bg-brand-500/20 text-brand-400 text-[10px] font-bold px-2 py-0.5 rounded uppercase font-mono">Developer Tooling</div>
+                        <h3 class="text-lg font-bold text-white mt-1">Interactive Tactile Tensor Format Inspector</h3>
+                        <p class="text-xs text-slate-400">Simulate raw uint16 tactile sensor feeds (`gripper_left_tactile`) and watch floating-point neural network decoding.</p>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="simulateTactilePulse('normal')" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs rounded border border-slate-700">Normal Touch</button>
+                        <button onclick="simulateTactilePulse('shear')" class="px-3 py-1.5 bg-amber-600 hover:bg-amber-500 text-white text-xs rounded font-medium">Shear Force</button>
+                        <button onclick="simulateTactilePulse('slip')" class="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white text-xs rounded font-medium">Object Slip</button>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Canvas Heatmap Visualizer -->
+                    <div class="lg:col-span-6 space-y-3">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-slate-400 font-mono">Fingertip Visuotactile Matrix (384x288 Surface)</span>
+                            <span id="tactile-status-tag" class="text-accent-400 font-mono font-bold">State: Stable Contact</span>
+                        </div>
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
+                            <canvas id="tactileCanvas" width="300" height="200" class="mx-auto rounded border border-slate-800 bg-black"></canvas>
+                        </div>
+                        <div class="text-[11px] text-slate-400 flex justify-between">
+                            <span>Color Key: Dark = Zero Force | Amber = Pressure | Red = Shear/Slip</span>
+                            <span class="font-mono text-brand-400">Codec: FFV1 (gbrp16le)</span>
+                        </div>
+                    </div>
+
+                    <!-- Python Conversion Code Preview -->
+                    <div class="lg:col-span-6 space-y-3">
+                        <div class="text-xs font-mono text-slate-300 font-bold flex justify-between">
+                            <span>PyTorch Tensor Preprocessing Advisory</span>
+                            <span class="text-amber-400">uint16 &#8594; float32</span>
+                        </div>
+                        <pre class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-slate-300 font-mono text-[11px] overflow-x-auto leading-relaxed">
+<span class="text-purple-400">import</span> torch
+<span class="text-purple-400">import</span> torchvision.io <span class="text-purple-400">as</span> io
+
+<span class="text-slate-500"># Read uint16 FFV1 video feed from DM-TacClaw</span>
+video_tensor = io.read_video(<span class="text-amber-300">"gripper_left_tactile.mov"</span>)[0]
+
+<span class="text-slate-500"># CRITICAL: Convert uint16 integers to float32 [0.0, 1.0]</span>
+<span class="text-slate-500"># Prevent gradient explosion during World Model latent training</span>
+tactile_float = video_tensor.to(torch.float32) / 65535.0
+
+<span class="text-purple-400">print</span>(f<span class="text-amber-300">"Decoded Latent Tensor Shape: {tactile_float.shape}"</span>)
+<span class="text-slate-500"># Output: torch.Size([Frames, 480, 640, 3])</span></pre>
+                        <p class="text-xs text-slate-400">
+                            * Note for researchers: Raw integer values must be normalized prior to feeding into world model autoregressive transformers.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- CALL FOR PAPERS & OPENREVIEW -->
+        <section id="cfp" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="bg-gradient-to-br from-slate-900 to-brand-950 text-white rounded-3xl p-8 md:p-12 border border-slate-800 shadow-xl space-y-8">
+                
+                <div class="flex flex-col md:flex-row justify-between md:items-center gap-6 border-b border-slate-800 pb-8">
+                    <div class="space-y-2 max-w-2xl">
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand-400">Academic Submissions</span>
+                        <h2 class="text-3xl font-extrabold text-white">Call for Papers &amp; Contributions</h2>
+                        <p class="text-slate-300 text-sm">
+                            We invite original contributions addressing Tactile World Models, active inference, sim-to-real transfer, and physical foundation models.
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a href="https://openreview.net/forum?id=xkAKGJMNir" target="_blank" rel="noopener" class="px-6 py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm rounded-xl text-center shadow-lg transition">
+                            Submit via OpenReview Portal &#8599;
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    
+                    <!-- Research Topics -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <span class="text-brand-400">&#10003;</span> Topics of Interest
+                        </h3>
+                        <ul class="text-xs text-slate-300 space-y-2.5 list-disc list-inside">
+                            <li>Architectural design &amp; scaling of Visuo-Tactile World Models (VT-WM).</li>
+                            <li>Predictive coding and active inference for contact-rich manipulation.</li>
+                            <li>Sim-to-real policy transfer &amp; closing the tactile simulation gap.</li>
+                            <li>Friction, slip prediction, material compliance, and non-linear object deformation.</li>
+                            <li>Multimodal foundation models integrating sight, touch, audio, and language.</li>
+                            <li>Novel actuated tactile end-effectors &amp; hardware design.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Submission Formats & Guidelines -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <span class="text-brand-400">&#10067;</span> Submission Tracks &amp; Requirements
+                        </h3>
+                        <div class="space-y-3 text-xs text-slate-300">
+                            <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
+                                <span class="font-bold text-white">Full Papers (Up to 6 pages):</span> Standard IEEE two-column format. Accepted papers will be featured in oral and spotlight sessions.
+                            </div>
+                            <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
+                                <span class="font-bold text-white">Extended Abstracts (2-4 pages):</span> Ongoing work, initial hardware concepts, and position papers for interactive poster sessions.
+                            </div>
+                            <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
+                                <span class="font-bold text-amber-400">Supplementary Video Requirement:</span> Submissions demonstrating hardware experiments are strongly encouraged to submit a clip showing model prediction vs real rollout.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROGRAM SCHEDULE -->
+        <section id="program" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Workshop Agenda</span>
+                <h2 class="text-3xl font-extrabold text-slate-900">
+                    Tentative Program Schedule
+                </h2>
+                <p class="text-slate-600 text-sm">
+                    Full-day workshop schedule at ICRA 2027 in Seoul (May 24 or May 28, 2027).
+                </p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex justify-center items-center gap-2 flex-wrap text-xs">
+                <button onclick="filterSchedule('all')" class="schedule-btn active px-3 py-1.5 rounded-full bg-slate-900 text-white font-medium">All Sessions</button>
+                <button onclick="filterSchedule('keynote')" class="schedule-btn px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium">Keynotes</button>
+                <button onclick="filterSchedule('benchmark')" class="schedule-btn px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium">Benchmark Showcase</button>
+                <button onclick="filterSchedule('oral')" class="schedule-btn px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium">Oral &amp; Posters</button>
+            </div>
+
+            <!-- Schedule Table -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+                <div class="divide-y divide-slate-100 text-xs md:text-sm">
+                    
+                    <div class="schedule-row keynote p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-50/50">
+                        <div class="font-mono text-slate-500 font-bold w-32">08:45 – 09:00</div>
+                        <div class="flex-1 space-y-1">
+                            <span class="px-2 py-0.5 bg-brand-100 text-brand-800 text-[10px] font-bold rounded">Opening</span>
+                            <div class="font-bold text-slate-900">Welcome &amp; Introduction to the 9th RoboTac Series</div>
+                            <div class="text-xs text-slate-500">Prof. Dr. Mohsen Kaboli &amp; Organizing Committee</div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-row keynote p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="font-mono text-slate-500 font-bold w-32">09:00 – 09:45</div>
+                        <div class="flex-1 space-y-1">
+                            <span class="px-2 py-0.5 bg-purple-100 text-purple-800 text-[10px] font-bold rounded">Keynote 1</span>
+                            <div class="font-bold text-slate-900">Scaling Tactile World Models for Embodied Autonomy</div>
+                            <div class="text-xs text-slate-500">Invited World Models Pioneer (To Be Announced)</div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-row keynote p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="font-mono text-slate-500 font-bold w-32">09:45 – 10:30</div>
+                        <div class="flex-1 space-y-1">
+                            <span class="px-2 py-0.5 bg-purple-100 text-purple-800 text-[10px] font-bold rounded">Keynote 2</span>
+                            <div class="font-bold text-slate-900">Bridging the Tactile Simulation Gap in Deformation Modeling</div>
+                            <div class="text-xs text-slate-500">Invited Manipulation &amp; Simulation Expert</div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-row p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-100/50">
+                        <div class="font-mono text-slate-400 font-bold w-32">10:30 – 11:00</div>
+                        <div class="flex-1 font-bold text-slate-600">Morning Coffee Break &amp; Interactive Networking</div>
+                    </div>
+
+                    <div class="schedule-row oral p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="font-mono text-slate-500 font-bold w-32">11:00 – 12:00</div>
+                        <div class="flex-1 space-y-1">
+                            <span class="px-2 py-0.5 bg-blue-100 text-blue-800 text-[10px] font-bold rounded">Oral Session 1</span>
+                            <div class="font-bold text-slate-900">Contributed Papers: Active Inference, Predictive Coding &amp; Fusion</div>
+                            <div class="text-xs text-slate-500">Top-rated accepted paper authors</div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-row p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-100/50">
+                        <div class="font-mono text-slate-400 font-bold w-32">12:00 – 13:30</div>
+                        <div class="flex-1 font-bold text-slate-600">Extended Lunch Break</div>
+                    </div>
+
+                    <div class="schedule-row benchmark p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-amber-50/40">
+                        <div class="font-mono text-amber-700 font-bold w-32">13:30 – 15:30</div>
+                        <div class="flex-1 space-y-1">
+                            <span class="px-2 py-0.5 bg-amber-500 text-slate-900 text-[10px] font-bold rounded">Benchmark Showcase</span>
+                            <div class="font-bold text-slate-900">RoboTac 2027 Sim-to-Real Benchmark Challenge Results</div>
+                            <div class="text-xs text-slate-600">Live comparative policy evaluation &amp; results from the 20 hardware-sponsored international research teams.</div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-row oral p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="font-mono text-slate-500 font-bold w-32">15:30 – 16:30</div>
+                        <div class="flex-1 space-y-1">
+                            <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded">Posters &amp; Demos</span>
+                            <div class="font-bold text-slate-900">Interactive Posters &amp; Hardware Demonstrations</div>
+                            <div class="text-xs text-slate-500">Featuring DM-TacClaw live tactile execution on real robotic arms.</div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-row keynote p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="font-mono text-slate-500 font-bold w-32">16:30 – 17:30</div>
+                        <div class="flex-1 space-y-1">
+                            <span class="px-2 py-0.5 bg-slate-800 text-white text-[10px] font-bold rounded">Panel &amp; Awards</span>
+                            <div class="font-bold text-slate-900">Expert Panel: The Future of Physical Intelligence + Best Paper &amp; Benchmark Awards</div>
+                            <div class="text-xs text-slate-500">Keynote speakers, committee, and benchmark winners.</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ORGANIZING COMMITTEE & CONTACT -->
+        <section id="organizers" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Leadership</span>
+                <h2 class="text-3xl font-extrabold text-slate-900">
+                    Organizing Committee
+                </h2>
+                <p class="text-slate-600 text-sm">
+                    Organized by leading researchers in Embodied AI, Tactile Sensing, and Robotics.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Lead Organizer -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-14 h-14 rounded-full bg-brand-600 text-white font-black text-xl flex items-center justify-center shadow">
+                            MK
+                        </div>
+                        <div>
+                            <h3 class="font-extrabold text-slate-900 text-base">Prof. Dr. Mohsen Kaboli</h3>
+                            <p class="text-xs text-brand-600 font-semibold">Lead Organizer &amp; PI</p>
+                            <p class="text-[11px] text-slate-500">TU/e &amp; BMW Group</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Head of the RoboTac Lab (Embodied Interactive Perception &amp; Robot Learning Lab) at Eindhoven University of Technology (TU/e) and Lead for Robotics &amp; Tactile Intelligence at BMW Group.
+                    </p>
+                    <div class="text-xs pt-2 border-t border-slate-100 flex justify-between items-center text-slate-500">
+                        <span>Contact Inquiry:</span>
+                        <a href="mailto:m.kaboli@tue.nl" class="text-brand-600 font-mono underline">m.kaboli@tue.nl</a>
+                    </div>
+                </div>
+
+                <!-- Academic Co-Organizers Placeholder -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-dashed border-slate-300 space-y-3 flex flex-col justify-center text-center">
+                    <div class="text-slate-400 text-2xl">&#127979;</div>
+                    <h4 class="font-bold text-slate-800 text-sm">International Co-Organizers</h4>
+                    <p class="text-xs text-slate-500">
+                        Representatives from academic institutions specializing in world models, Isaac Sim physics, and tactile sensor fabrication.
+                    </p>
+                </div>
+
+                <!-- Industry Partner -->
+                <div class="bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 space-y-3 flex flex-col justify-between">
+                    <div>
+                        <div class="text-xs text-brand-400 font-mono font-bold uppercase">Hardware Partner</div>
+                        <h4 class="font-extrabold text-white text-base mt-1">Daimon Robotics</h4>
+                        <p class="text-xs text-slate-300 mt-2">
+                            Providing 20 sets of DM-DataClaw and DM-TacClaw hardware and co-developing the RobOmni simulation digital twin.
+                        </p>
+                    </div>
+                    <a href="https://www.dmrobot.com/en/" target="_blank" class="text-xs font-bold text-brand-400 hover:underline inline-block">
+                        Visit Daimon Robotics Portal &#8599;
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 text-xs py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div>
+                    <span class="text-white font-bold text-base">RoboTac 2027</span>
+                    <span class="text-slate-500 ml-2">9th Workshop on Tactile Intelligence @ ICRA 2027</span>
+                </div>
+                <div class="flex space-x-6 text-slate-400">
+                    <a href="http://www.robotac.eu/robotac2027" class="hover:text-white">www.robotac.eu/robotac2027</a>
+                    <a href="https://openreview.net/forum?id=xkAKGJMNir" target="_blank" class="hover:text-white">OpenReview Submissions</a>
+                    <a href="mailto:m.kaboli@tue.nl" class="hover:text-white">Contact Organizers</a>
+                </div>
+            </div>
+            <div class="text-slate-600 text-[11px] text-center md:text-left border-t border-slate-800/80 pt-6">
+                Notice: If you are not an author of a submission and would like to be removed or have questions regarding benchmark hardware distribution, please contact the lead organizer at <a href="mailto:m.kaboli@tue.nl" class="text-slate-400 underline">m.kaboli@tue.nl</a>.
+            </div>
+        </div>
+    </footer>
+
+    <!-- HARDWARE APPLICATION MODAL SIMULATOR -->
+    <div id="hardware-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-6 relative border border-slate-200">
+            <button onclick="closeHardwareModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-xl font-bold">&times;</button>
+            
+            <div class="space-y-1">
+                <span class="text-[10px] font-bold text-brand-600 uppercase tracking-wider font-mono">Daimon Hardware Grant Application</span>
+                <h3 class="text-xl font-extrabold text-slate-900">Request 1 of 20 Hardware Sets</h3>
+                <p class="text-xs text-slate-500">Includes DM-DataClaw, DM-TacClaw, and RobOmni Isaac Sim digital twin access.</p>
+            </div>
+
+            <form onsubmit="handleHardwareFormSubmit(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Principal Investigator (PI) Name</label>
+                    <input type="text" required placeholder="e.g. Prof. Jane Doe" class="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Laboratory &amp; University/Institution</label>
+                    <input type="text" required placeholder="e.g. Robotics &amp; Embodied AI Lab, University" class="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Institutional Email</label>
+                    <input type="email" required placeholder="pi@university.edu" class="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none">
+                </div>
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Brief Research Proposal Summary (100 words)</label>
+                    <textarea required rows="3" placeholder="Outline how your group will use Tactile World Models for grasping or manipulation benchmarking..." class="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none"></textarea>
+                </div>
+
+                <div id="form-feedback" class="hidden p-3 bg-emerald-50 text-emerald-800 rounded-lg text-xs font-medium">
+                    Application intent submitted successfully! You will receive confirmation at the provided PI email.
+                </div>
+
+                <div class="flex justify-end space-x-2 pt-2">
+                    <button type="button" onclick="closeHardwareModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-bold">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-lg font-bold shadow">Submit Hardware Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // 2. Countdown Timer Logic
+        function startCountdown() {
+            // Target date: March 1, 2027 (approx 3 months before ICRA 2027)
+            const targetDate = new Date("March 1, 2027 23:59:59").getTime();
+            const display = document.getElementById('countdown-display');
+
+            setInterval(() => {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance < 0) {
+                    display.innerText = "Applications Under Review";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+                display.innerText = `${days}d ${hours}h ${minutes}m remaining`;
+            }, 1000);
+        }
+        startCountdown();
+
+        // 3. Evolution Matrix Details
+        const evolutionDetails = {
+            'p1': '[Phase 1 Legacy] Focused on basic tactile sensor fabrication, static contact classification, and preliminary surface roughness perception.',
+            'p2': '[Phase 2 Legacy] Introduced Visuo-Tactile fusion, predictive coding paradigms, and active inference frameworks for grasping stability.',
+            'p3': '[Phase 3 Legacy] Advanced data-driven reinforcement learning, contact-rich manipulation tasks, and closed-loop force regulation.',
+            'p4': '[Phase 4 - RoboTac 2027] Centered on Visuo-Tactile World Models (VT-WM), 20 Daimon hardware distributions, RobOmni Isaac Sim twins, and sim-to-real comparative benchmarks.'
+        };
+
+        function showEvolutionDetail(phase) {
+            const box = document.getElementById('evolution-detail-box');
+            box.innerText = evolutionDetails[phase];
+        }
+
+        // 4. Chart.js Implementation for Motivation Chart
+        let motivationChartInstance = null;
+
+        function initMotivationChart() {
+            const ctx = document.getElementById('motivationChart').getContext('2d');
+            
+            const timesteps = Array.from({length: 20}, (_, i) => `${(i+1)*10}ms`);
+            
+            // Slippage dataset (Vision-only diverges quickly)
+            const visionErrorSlippage = [2, 5, 12, 22, 38, 55, 72, 88, 98, 115, 130, 148, 165, 180, 195, 210, 225, 240, 255, 270];
+            const vtwmErrorSlippage = [2, 4, 6, 8, 10, 12, 14, 15, 17, 18, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30];
+
+            motivationChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: timesteps,
+                    datasets: [
+                        {
+                            label: 'Vision-Only World Model Error',
+                            data: visionErrorSlippage,
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Visuo-Tactile World Model (VT-WM) Error',
+                            data: vtwmErrorSlippage,
+                            borderColor: '#2563eb',
+                            backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { font: { size: 11 } }
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Future Prediction Horizon (Timesteps)', font: { size: 11 } }
+                        },
+                        y: {
+                            title: { display: true, text: 'Latent Rollout Error (MSE)', font: { size: 11 } },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateChartDataset(type) {
+            if (!motivationChartInstance) return;
+
+            if (type === 'slippage') {
+                motivationChartInstance.data.datasets[0].data = [2, 5, 12, 22, 38, 55, 72, 88, 98, 115, 130, 148, 165, 180, 195, 210, 225, 240, 255, 270];
+                motivationChartInstance.data.datasets[1].data = [2, 4, 6, 8, 10, 12, 14, 15, 17, 18, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30];
+            } else {
+                // Deformable dataset
+                motivationChartInstance.data.datasets[0].data = [3, 8, 18, 35, 60, 85, 110, 140, 175, 205, 235, 260, 290, 310, 330, 350, 370, 390, 410, 430];
+                motivationChartInstance.data.datasets[1].data = [3, 5, 8, 11, 14, 17, 19, 22, 25, 28, 30, 33, 35, 37, 39, 41, 43, 45, 47, 50];
+            }
+            motivationChartInstance.update();
+        }
+
+        // 5. Chart.js Radar Chart for Evaluation Criteria
+        function initRadarChart() {
+            const ctx = document.getElementById('radarEvaluationChart').getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        'Grasp Success Rate',
+                        'Slip Anticipation',
+                        'Sim-to-Real Transfer',
+                        'Shear Estimation',
+                        'Assembly Accuracy',
+                        'Deformation Model'
+                    ],
+                    datasets: [{
+                        label: 'Benchmark Metric Target',
+                        data: [95, 90, 85, 88, 92, 80],
+                        fill: true,
+                        backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                        borderColor: '#3b82f6',
+                        pointBackgroundColor: '#3b82f6',
+                        pointBorderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            pointLabels: { color: '#94a3b8', font: { size: 10 } },
+                            ticks: { display: false, backdropColor: 'transparent' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 6. Tactile Sensor Heatmap Simulation on HTML Canvas
+        let tactileCanvasCtx = null;
+
+        function initTactileCanvas() {
+            const canvas = document.getElementById('tactileCanvas');
+            tactileCanvasCtx = canvas.getContext('2d');
+            drawTactileState('normal');
+        }
+
+        function drawTactileState(mode) {
+            if (!tactileCanvasCtx) return;
+
+            const width = 300;
+            const height = 200;
+            tactileCanvasCtx.clearRect(0, 0, width, height);
+
+            // Background Grid representing sensor cell matrix
+            tactileCanvasCtx.fillStyle = '#0a0a0c';
+            tactileCanvasCtx.fillRect(0, 0, width, height);
+
+            // Draw matrix grid points
+            tactileCanvasCtx.fillStyle = '#1e293b';
+            for (let x = 10; x < width; x += 15) {
+                for (let y = 10; y < height; y += 15) {
+                    tactileCanvasCtx.fillRect(x, y, 2, 2);
+                }
+            }
+
+            const statusTag = document.getElementById('tactile-status-tag');
+
+            if (mode === 'normal') {
+                statusTag.innerText = "State: Normal Static Contact";
+                statusTag.className = "text-accent-400 font-mono font-bold";
+
+                // Concentric pressure circle
+                const grad = tactileCanvasCtx.createRadialGradient(150, 100, 5, 150, 100, 60);
+                grad.addColorStop(0, 'rgba(217, 119, 6, 0.9)');
+                grad.addColorStop(0.5, 'rgba(37, 99, 235, 0.5)');
+                grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+                tactileCanvasCtx.fillStyle = grad;
+                tactileCanvasCtx.beginPath();
+                tactileCanvasCtx.arc(150, 100, 60, 0, Math.PI * 2);
+                tactileCanvasCtx.fill();
+
+            } else if (mode === 'shear') {
+                statusTag.innerText = "State: High Shear Vector Detected";
+                statusTag.className = "text-amber-400 font-mono font-bold";
+
+                // Asymmetric stretched pressure indicating directional shear
+                const grad = tactileCanvasCtx.createRadialGradient(180, 100, 5, 140, 100, 75);
+                grad.addColorStop(0, 'rgba(239, 68, 68, 0.9)');
+                grad.addColorStop(0.4, 'rgba(217, 119, 6, 0.7)');
+                grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+                tactileCanvasCtx.fillStyle = grad;
+                tactileCanvasCtx.beginPath();
+                tactileCanvasCtx.ellipse(160, 100, 80, 45, Math.PI / 6, 0, Math.PI * 2);
+                tactileCanvasCtx.fill();
+
+                // Shear Arrow Line
+                tactileCanvasCtx.strokeStyle = '#f59e0b';
+                tactileCanvasCtx.lineWidth = 3;
+                tactileCanvasCtx.beginPath();
+                tactileCanvasCtx.moveTo(120, 100);
+                tactileCanvasCtx.lineTo(200, 100);
+                tactileCanvasCtx.stroke();
+
+            } else if (mode === 'slip') {
+                statusTag.innerText = "State: Object Slip In Progress!";
+                statusTag.className = "text-red-500 font-mono font-bold";
+
+                // Multiple chaotic contact points indicating friction breakdown
+                for (let i = 0; i < 5; i++) {
+                    const cx = 80 + i * 35;
+                    const cy = 80 + (i % 2) * 30;
+                    const grad = tactileCanvasCtx.createRadialGradient(cx, cy, 2, cx, cy, 25);
+                    grad.addColorStop(0, 'rgba(239, 68, 68, 0.95)');
+                    grad.addColorStop(1, 'rgba(0,0,0,0)');
+
+                    tactileCanvasCtx.fillStyle = grad;
+                    tactileCanvasCtx.beginPath();
+                    tactileCanvasCtx.arc(cx, cy, 25, 0, Math.PI * 2);
+                    tactileCanvasCtx.fill();
+                }
+            }
+        }
+
+        function simulateTactilePulse(mode) {
+            drawTactileState(mode);
+        }
+
+        // 7. Schedule Filter logic
+        function filterSchedule(type) {
+            const rows = document.querySelectorAll('.schedule-row');
+            const btns = document.querySelectorAll('.schedule-btn');
+
+            btns.forEach(btn => {
+                btn.classList.remove('bg-slate-900', 'text-white');
+                btn.classList.add('bg-slate-100', 'text-slate-700');
+            });
+
+            event.target.classList.remove('bg-slate-100', 'text-slate-700');
+            event.target.classList.add('bg-slate-900', 'text-white');
+
+            rows.forEach(row => {
+                if (type === 'all') {
+                    row.style.display = 'flex';
+                } else if (row.classList.contains(type)) {
+                    row.style.display = 'flex';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // 8. Hardware Modal Controls
+        function openHardwareModal() {
+            document.getElementById('hardware-modal').classList.remove('hidden');
+        }
+
+        function closeHardwareModal() {
+            document.getElementById('hardware-modal').classList.add('hidden');
+            document.getElementById('form-feedback').classList.add('hidden');
+        }
+
+        function handleHardwareFormSubmit(e) {
+            e.preventDefault();
+            const feedback = document.getElementById('form-feedback');
+            feedback.classList.remove('hidden');
+            setTimeout(() => {
+                closeHardwareModal();
+            }, 2500);
+        }
+
+        // Initialize Charts and Canvas on DOM Content Loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            initMotivationChart();
+            initRadarChart();
+            initTactileCanvas();
+        });
+    </script>
+</body>
+</html>
