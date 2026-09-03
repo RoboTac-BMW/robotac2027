@@ -37,6 +37,18 @@
         }
     </script>
     <style>
+        /* Global UI Scale-up for Desktop */
+        @media (min-width: 1024px) {
+            html {
+                font-size: 17px;
+            }
+        }
+        @media (min-width: 1280px) {
+            html {
+                font-size: 18px;
+            }
+        }
+
         /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -665,15 +677,15 @@
         <!-- CALL FOR PAPERS (GOOGLE FORM SUBMISSION) -->
         <section id="cfp" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
             <div
-                class="bg-gradient-to-br from-slate-900 to-brand-950 text-white rounded-3xl p-8 md:p-12 border border-slate-800 shadow-xl space-y-8">
+                class="bg-gradient-to-br from-brand-50 to-blue-50/50 rounded-3xl p-8 md:p-12 border border-brand-200 shadow-sm space-y-8">
 
                 <div
-                    class="flex flex-col md:flex-row justify-between md:items-center gap-6 border-b border-slate-800 pb-8">
+                    class="flex flex-col md:flex-row justify-between md:items-center gap-6 border-b border-brand-200/60 pb-8">
                     <div class="space-y-2 max-w-2xl">
-                        <span class="text-xs font-bold uppercase tracking-wider text-brand-400">Academic
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Academic
                             Submissions</span>
-                        <h2 class="text-3xl font-extrabold text-white">Call for Papers &amp; Contributions</h2>
-                        <p class="text-slate-300 text-sm">
+                        <h2 class="text-3xl font-extrabold text-slate-900">Call for Papers &amp; Contributions</h2>
+                        <p class="text-slate-700 text-sm leading-relaxed">
                             We invite original contributions addressing Tactile World Models, active inference,
                             sim-to-real transfer, and physical foundation models. Note: OpenReview was used for the
                             initial workshop proposal. Final paper submissions will be collected via Google Form.
@@ -681,32 +693,32 @@
                     </div>
                     <div class="flex flex-col sm:flex-row gap-3">
                         <a href="#google-form"
-                            class="px-6 py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm rounded-xl text-center shadow-lg transition">
+                            class="px-6 py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm rounded-xl text-center shadow-md transition">
                             Submit Paper via Google Form &#8599;
                         </a>
                     </div>
                 </div>
 
                 <!-- Important Dates -->
-                <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-6 mb-8">
-                    <h3 class="font-extrabold text-white text-base mb-4 flex items-center gap-2">
-                        <span class="text-brand-400">&#128197;</span> Important Dates
+                <div class="bg-white border border-brand-100 shadow-sm rounded-2xl p-6 mb-8">
+                    <h3 class="font-extrabold text-slate-900 text-base mb-4 flex items-center gap-2">
+                        <span class="text-brand-600">&#128197;</span> Important Dates
                     </h3>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left">
                         <div class="space-y-1">
-                            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Paper Submission
+                            <div class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Paper Submission
                             </div>
-                            <div class="font-bold text-white text-sm">April 15th, 2027</div>
+                            <div class="font-bold text-slate-900 text-sm">April 15th, 2027</div>
                         </div>
                         <div class="space-y-1">
-                            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Notification
+                            <div class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Notification
                             </div>
-                            <div class="font-bold text-brand-400 text-sm">April 24th, 2027</div>
+                            <div class="font-bold text-brand-600 text-sm">April 24th, 2027</div>
                         </div>
                         <div class="space-y-1">
-                            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Camera-Ready
+                            <div class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Camera-Ready
                             </div>
-                            <div class="font-bold text-white text-sm">April 30th, 2027</div>
+                            <div class="font-bold text-slate-900 text-sm">April 30th, 2027</div>
                         </div>
                     </div>
                 </div>
@@ -715,10 +727,10 @@
 
                     <!-- Research Topics -->
                     <div class="space-y-4">
-                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
-                            <span class="text-brand-400">&#10003;</span> Topics of Interest
+                        <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                            <span class="text-brand-600">&#10003;</span> Topics of Interest
                         </h3>
-                        <ul class="text-xs text-slate-300 space-y-2.5 list-disc list-inside">
+                        <ul class="text-xs text-slate-700 space-y-2.5 list-disc list-inside">
                             <li>Architectural design &amp; scaling of Visuo-Tactile World Models (VT-WM).</li>
                             <li>Predictive coding and active inference for contact-rich manipulation.</li>
                             <li>Sim-to-real policy transfer &amp; closing the tactile simulation gap.</li>
@@ -730,20 +742,20 @@
 
                     <!-- Submission Formats & Guidelines -->
                     <div class="space-y-4">
-                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
-                            <span class="text-brand-400">&#10067;</span> Submission Tracks &amp; Requirements
+                        <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                            <span class="text-brand-600">&#10067;</span> Submission Tracks &amp; Requirements
                         </h3>
-                        <div class="space-y-3 text-xs text-slate-300">
-                            <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-                                <span class="font-bold text-white">Full Papers (Up to 6 pages):</span> Standard IEEE
+                        <div class="space-y-3 text-xs text-slate-700">
+                            <div class="p-3 bg-white shadow-sm rounded-xl border border-brand-100">
+                                <span class="font-bold text-slate-900">Full Papers (Up to 6 pages):</span> Standard IEEE
                                 two-column format. Accepted papers will be featured in oral and spotlight sessions.
                             </div>
-                            <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-                                <span class="font-bold text-white">Extended Abstracts (2-4 pages):</span> Ongoing work,
+                            <div class="p-3 bg-white shadow-sm rounded-xl border border-brand-100">
+                                <span class="font-bold text-slate-900">Extended Abstracts (2-4 pages):</span> Ongoing work,
                                 initial hardware concepts, and position papers for interactive poster sessions.
                             </div>
-                            <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-                                <span class="font-bold text-amber-400">Supplementary Video Requirement:</span>
+                            <div class="p-3 bg-amber-50/70 shadow-sm rounded-xl border border-amber-200">
+                                <span class="font-bold text-amber-700">Supplementary Video Requirement:</span>
                                 Submissions demonstrating hardware experiments are strongly encouraged to submit a clip
                                 showing model prediction vs real rollout.
                             </div>
