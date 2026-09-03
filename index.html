@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,23 +42,29 @@
             width: 8px;
             height: 8px;
         }
+
         ::-webkit-scrollbar-track {
             background: #f1f5f9;
         }
+
         ::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 4px;
         }
+
         ::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
     </style>
 </head>
+
 <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white">
 
     <!-- Top Announcement Bar -->
-    <div class="bg-slate-900 text-slate-300 text-xs md:text-sm py-2 px-4 text-center border-b border-slate-800 flex flex-wrap justify-center items-center gap-2">
-        <span class="inline-block bg-amber-500/20 text-amber-400 font-semibold px-2 py-0.5 rounded border border-amber-500/30">
+    <div
+        class="bg-slate-900 text-slate-300 text-xs md:text-sm py-2 px-4 text-center border-b border-slate-800 flex flex-wrap justify-center items-center gap-2">
+        <span
+            class="inline-block bg-amber-500/20 text-amber-400 font-semibold px-2 py-0.5 rounded border border-amber-500/30">
             &#9733; Benchmark Hardware Grant
         </span>
         <span>20 Daimon Hardware Sets (DM-DataClaw &amp; DM-TacClaw) available for global research labs!</span>
@@ -68,12 +75,14 @@
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-lg bg-brand-600 text-white flex items-center justify-center font-black text-xl shadow-inner">
+                <div
+                    class="w-10 h-10 rounded-lg bg-brand-600 text-white flex items-center justify-center font-black text-xl shadow-inner">
                     RT
                 </div>
                 <div>
                     <span class="font-bold text-lg text-slate-900 tracking-tight leading-none block">RoboTac 2027</span>
-                    <span class="text-xs text-slate-500 font-medium leading-none block mt-1">ICRA 2027 Workshop &#8226; Seoul</span>
+                    <span class="text-xs text-slate-500 font-medium leading-none block mt-1">ICRA 2027 Workshop &#8226;
+                        Seoul</span>
                 </div>
             </div>
 
@@ -88,25 +97,33 @@
             </nav>
 
             <div class="flex items-center space-x-3">
-                <a href="#google-form" class="hidden sm:inline-flex items-center px-3.5 py-2 rounded-lg text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 transition shadow">
+                <a href="#google-form"
+                    class="hidden sm:inline-flex items-center px-3.5 py-2 rounded-lg text-xs font-semibold bg-slate-900 text-white hover:bg-slate-800 transition shadow">
                     <span>Submit Paper (Form)</span>
                     <span class="ml-1 text-slate-400">&#8599;</span>
                 </a>
-                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none">
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+                    class="lg:hidden p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none">
                     <span class="text-2xl">&#9776;</span>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Nav Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-4 space-y-2 text-sm font-medium text-slate-700">
+        <div id="mobile-menu"
+            class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-4 space-y-2 text-sm font-medium text-slate-700">
             <a href="#overview" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-600">Overview</a>
-            <a href="#program" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-600">Program &amp; Schedule</a>
-            <a href="#organizers" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-600">Organizing Committee</a>
-            <a href="#benchmark" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-600">Benchmark &amp; Hardware</a>
+            <a href="#program" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-600">Program &amp;
+                Schedule</a>
+            <a href="#organizers" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-600">Organizing
+                Committee</a>
+            <a href="#benchmark" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-600">Benchmark &amp;
+                Hardware</a>
             <a href="#cfp" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-600">Call for Papers</a>
             <a href="#sponsors" onclick="toggleMobileMenu()" class="block py-2 hover:text-brand-600">Sponsors</a>
-            <a href="#google-form" class="block py-2.5 text-center bg-slate-900 text-white rounded-md mt-2 font-semibold">Submit Paper (Form) &#8599;</a>
+            <a href="#google-form"
+                class="block py-2.5 text-center bg-slate-900 text-white rounded-md mt-2 font-semibold">Submit Paper
+                (Form) &#8599;</a>
         </div>
     </header>
 
@@ -115,55 +132,76 @@
         <!-- HERO SECTION -->
         <section class="relative bg-slate-900 text-white pt-12 pb-12 overflow-hidden">
             <!-- Background Accent Patterns using HTML/CSS -->
-            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:24px_24px]"></div>
-            <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div
+                class="absolute inset-0 opacity-10 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:24px_24px]">
+            </div>
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl pointer-events-none">
+            </div>
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="grid lg:grid-cols-12 gap-12 items-center">
-                    
+
                     <div class="lg:col-span-6 space-y-6">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 border border-brand-400/30 text-brand-300 text-xs font-semibold uppercase tracking-wider">
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 border border-brand-400/30 text-brand-300 text-xs font-semibold uppercase tracking-wider">
                             <span>&#128204; The 9th RoboTac IEEE Workshop @ ICRA 2027</span>
                             <span>&#8226;</span>
                             <span>Seoul, South Korea</span>
                         </div>
 
-                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                        <h1
+                            class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
                             RoboTac 2027: Benchmarking Tactile Intelligence
                         </h1>
 
                         <p class="text-lg text-slate-300 font-light leading-relaxed">
-                            <span class="font-semibold text-white">Emerging Tactile World Models for Embodied Robotics.</span> Advancing physical intelligence through coordinated sim-to-real benchmarks, high-fidelity tactile hardware, and predictive world dynamics.
+                            <span class="font-semibold text-white">Emerging Tactile World Models for Embodied
+                                Robotics.</span> Advancing physical intelligence through coordinated sim-to-real
+                            benchmarks, high-fidelity tactile hardware, and predictive world dynamics.
                         </p>
 
-                        <div class="p-4 bg-slate-800/80 rounded-xl border border-slate-700/60 backdrop-blur-sm space-y-4">
-                            <div class="flex justify-between items-center text-xs text-slate-400 border-b border-slate-700/50 pb-3">
+                        <div
+                            class="p-4 bg-slate-800/80 rounded-xl border border-slate-700/60 backdrop-blur-sm space-y-4">
+                            <div
+                                class="flex justify-between items-center text-xs text-slate-400 border-b border-slate-700/50 pb-3">
                                 <span>&#128197; Date: May 24 or May 28, 2027</span>
                                 <span>&#128205; COEX Convention Center, Seoul</span>
                             </div>
-                            
+
                             <div class="grid sm:grid-cols-2 gap-4">
                                 <!-- Hardware Deadline Block -->
-                                <div class="bg-slate-900/80 px-4 py-3 rounded-xl border border-slate-700/60 flex flex-col justify-center space-y-2 shadow-inner">
+                                <div
+                                    class="bg-slate-900/80 px-4 py-3 rounded-xl border border-slate-700/60 flex flex-col justify-center space-y-2 shadow-inner">
                                     <div class="flex items-center justify-between">
-                                        <span class="text-[10px] text-amber-400 font-bold uppercase tracking-widest">&#128197; Hardware Grant Deadline</span>
+                                        <span
+                                            class="text-[10px] text-amber-400 font-bold uppercase tracking-widest">&#128197;
+                                            Hardware Grant Deadline</span>
                                     </div>
                                     <div class="text-white text-sm font-semibold">Dec 1, 2026</div>
                                     <div class="flex items-center justify-between pt-2 border-t border-slate-700/50">
-                                        <span class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">&#9200; Countdown:</span>
-                                        <span id="countdown-display" class="font-mono text-xs font-bold text-white">Calculating...</span>
+                                        <span
+                                            class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">&#9200;
+                                            Countdown:</span>
+                                        <span id="countdown-display"
+                                            class="font-mono text-xs font-bold text-white">Calculating...</span>
                                     </div>
                                 </div>
 
                                 <!-- Paper Deadline Block -->
-                                <div class="bg-slate-900/80 px-4 py-3 rounded-xl border border-slate-700/60 flex flex-col justify-center space-y-2 shadow-inner">
+                                <div
+                                    class="bg-slate-900/80 px-4 py-3 rounded-xl border border-slate-700/60 flex flex-col justify-center space-y-2 shadow-inner">
                                     <div class="flex items-center justify-between">
-                                        <span class="text-[10px] text-brand-400 font-bold uppercase tracking-widest">&#128197; Paper Submission Deadline</span>
+                                        <span
+                                            class="text-[10px] text-brand-400 font-bold uppercase tracking-widest">&#128197;
+                                            Paper Submission Deadline</span>
                                     </div>
                                     <div class="text-white text-sm font-semibold">Apr 15, 2027</div>
                                     <div class="flex items-center justify-between pt-2 border-t border-slate-700/50">
-                                        <span class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">&#9200; Countdown:</span>
-                                        <span id="paper-countdown-display" class="font-mono text-xs font-bold text-white">Calculating...</span>
+                                        <span
+                                            class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">&#9200;
+                                            Countdown:</span>
+                                        <span id="paper-countdown-display"
+                                            class="font-mono text-xs font-bold text-white">Calculating...</span>
                                     </div>
                                 </div>
                             </div>
@@ -172,33 +210,43 @@
 
                     <!-- Hero Quick Data Summary Cards (At a Glance) -->
                     <div class="lg:col-span-6 grid sm:grid-cols-2 gap-4">
-                        
+
                         <!-- Benchmark At a Glance -->
-                        <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-5 shadow-2xl flex flex-col justify-between">
+                        <div
+                            class="bg-slate-800/90 border border-slate-700 rounded-2xl p-5 shadow-2xl flex flex-col justify-between">
                             <div>
                                 <div class="border-b border-slate-700 pb-3 mb-4">
-                                    <h3 class="text-sm font-bold uppercase tracking-wider text-brand-400">Sim-to-Real Benchmark</h3>
+                                    <h3 class="text-sm font-bold uppercase tracking-wider text-brand-400">Sim-to-Real
+                                        Benchmark</h3>
                                 </div>
                                 <p class="text-xs text-slate-300 leading-relaxed font-medium">
-                                    Join an international initiative to evaluate emerging predictive physical intelligence. Selected labs receive DM-DataClaw and DM-TacClaw hardware alongside the RobOmni Isaac Sim environment to tackle standardized physical challenges.
+                                    Join an international initiative to evaluate emerging predictive physical
+                                    intelligence. Selected labs receive DM-DataClaw and DM-TacClaw hardware alongside
+                                    the RobOmni Isaac Sim environment to tackle standardized physical challenges.
                                 </p>
                             </div>
-                            <a href="#benchmark" class="block w-full text-center mt-4 px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold rounded-lg transition">
+                            <a href="#benchmark"
+                                class="block w-full text-center mt-4 px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold rounded-lg transition">
                                 Explore Benchmark &#8595;
                             </a>
                         </div>
 
                         <!-- Call for Papers At a Glance -->
-                        <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-5 shadow-2xl flex flex-col justify-between">
+                        <div
+                            class="bg-slate-800/90 border border-slate-700 rounded-2xl p-5 shadow-2xl flex flex-col justify-between">
                             <div>
                                 <div class="border-b border-slate-700 pb-3 mb-4">
-                                    <h3 class="text-sm font-bold uppercase tracking-wider text-amber-400">Call for Papers</h3>
+                                    <h3 class="text-sm font-bold uppercase tracking-wider text-amber-400">Call for
+                                        Papers</h3>
                                 </div>
                                 <p class="text-xs text-slate-300 leading-relaxed font-medium">
-                                    We invite original contributions (2-6 pages) spanning tactile perception, active inference, sim-to-real transfer, and multimodal foundation models. Accepted works will be featured in oral and spotlight sessions.
+                                    We invite original contributions (2-6 pages) spanning tactile perception, active
+                                    inference, sim-to-real transfer, and multimodal foundation models. Accepted works
+                                    will be featured in oral and spotlight sessions.
                                 </p>
                             </div>
-                            <a href="#cfp" class="block w-full text-center mt-4 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold rounded-lg transition border border-slate-600">
+                            <a href="#cfp"
+                                class="block w-full text-center mt-4 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold rounded-lg transition border border-slate-600">
                                 Submission Guidelines &#8595;
                             </a>
                         </div>
@@ -211,17 +259,26 @@
         <!-- OVERVIEW (ABSTRACT + MOTIVATION FUSED) -->
         <section id="overview" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-2xl p-6 md:p-10 border border-slate-200 shadow-sm space-y-6">
-                
+
                 <div class="space-y-3">
-                    <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Overview &amp; Scientific Motivation</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-brand-600">Overview &amp; Scientific
+                        Motivation</span>
                     <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900">
                         Bridging Physical Interaction with Tactile World Models
                     </h2>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        Touch provides robots with direct access to physical interaction, revealing contact, force, friction, slip, compliance, deformation, and object dynamics that cannot always be inferred from vision alone. As robotics moves toward Embodied AI and Physical AI, an emerging challenge is to develop <strong>Tactile World Models</strong> that enable robots not only to perceive contact, but to learn the dynamics of physical interaction, predict the consequences of their actions, and use these predictions for adaptive grasping and manipulation.
+                        Touch provides robots with direct access to physical interaction, revealing contact, force,
+                        friction, slip, compliance, deformation, and object dynamics that cannot always be inferred from
+                        vision alone. As robotics moves toward Embodied AI and Physical AI, an emerging challenge is to
+                        develop <strong>Tactile World Models</strong> that enable robots not only to perceive contact,
+                        but to learn the dynamics of physical interaction, predict the consequences of their actions,
+                        and use these predictions for adaptive grasping and manipulation.
                     </p>
                     <p class="text-slate-600 text-sm leading-relaxed">
-                        Visual perception suffers from severe line-of-sight occlusions during contact-rich tasks like bimanual assembly, wiping, or gripping delicate objects. Vision cannot measure shear force, friction distribution, or minute surface deformation. Visuo-Tactile World Models (VT-WM) close this gap by learning true interaction dynamics in latent space.
+                        Visual perception suffers from severe line-of-sight occlusions during contact-rich tasks like
+                        bimanual assembly, wiping, or gripping delicate objects. Vision cannot measure shear force,
+                        friction distribution, or minute surface deformation. Visuo-Tactile World Models (VT-WM) close
+                        this gap by learning true interaction dynamics in latent space.
                     </p>
                 </div>
 
@@ -242,35 +299,51 @@
 
             <!-- Filter Buttons -->
             <div class="flex justify-center items-center gap-2 flex-wrap text-xs">
-                <button onclick="filterSchedule('all')" class="schedule-btn active px-3 py-1.5 rounded-full bg-slate-900 text-white font-medium">All Sessions</button>
-                <button onclick="filterSchedule('keynote')" class="schedule-btn px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium">Keynotes</button>
-                <button onclick="filterSchedule('benchmark')" class="schedule-btn px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium">Benchmark Showcase</button>
-                <button onclick="filterSchedule('oral')" class="schedule-btn px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium">Oral &amp; Posters</button>
+                <button onclick="filterSchedule('all')"
+                    class="schedule-btn active px-3 py-1.5 rounded-full bg-slate-900 text-white font-medium">All
+                    Sessions</button>
+                <button onclick="filterSchedule('keynote')"
+                    class="schedule-btn px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium">Keynotes</button>
+                <button onclick="filterSchedule('benchmark')"
+                    class="schedule-btn px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium">Benchmark
+                    Showcase</button>
+                <button onclick="filterSchedule('oral')"
+                    class="schedule-btn px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium">Oral
+                    &amp; Posters</button>
             </div>
 
             <!-- Schedule Table with Headshots -->
             <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm max-w-5xl mx-auto">
                 <div class="divide-y divide-slate-100 text-xs md:text-sm">
-                    
-                    <div class="schedule-row keynote p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-50/50">
+
+                    <div
+                        class="schedule-row keynote p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-50/50">
                         <div class="font-mono text-slate-500 font-bold w-32">08:45 – 09:00</div>
                         <div class="flex-1 space-y-1">
-                            <span class="px-2 py-0.5 bg-brand-100 text-brand-800 text-[10px] font-bold rounded">Opening</span>
-                            <div class="font-bold text-slate-900 text-base md:text-lg leading-tight">Welcome &amp; Introduction to the 9th RoboTac Series</div>
+                            <span
+                                class="px-2 py-0.5 bg-brand-100 text-brand-800 text-[10px] font-bold rounded">Opening</span>
+                            <div class="font-bold text-slate-900 text-base md:text-lg leading-tight">Welcome &amp;
+                                Introduction to the 9th RoboTac Series</div>
                             <div class="flex items-center gap-2 text-xs text-slate-500 mt-2">
-                                <img src="assets/images/organizers/mohsen-kaboli.svg" alt="Prof. Dr. Mohsen Kaboli" class="w-6 h-6 rounded-full border border-slate-200">
+                                <img src="assets/images/organizers/mohsen-kaboli.svg" alt="Prof. Dr. Mohsen Kaboli"
+                                    class="w-6 h-6 rounded-full border border-slate-200">
                                 <span>Prof. Dr. Mohsen Kaboli &amp; Organizing Committee</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="schedule-row keynote p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div
+                        class="schedule-row keynote p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div class="font-mono text-slate-500 font-bold w-32">09:00 – 09:45</div>
                         <div class="flex-1 space-y-1">
-                            <span class="px-2 py-0.5 bg-purple-100 text-purple-800 text-[10px] font-bold rounded">Keynote 1</span>
-                            <div class="font-bold text-slate-900 text-base md:text-lg leading-tight">Scaling Tactile World Models for Embodied Autonomy</div>
+                            <span
+                                class="px-2 py-0.5 bg-purple-100 text-purple-800 text-[10px] font-bold rounded">Keynote
+                                1</span>
+                            <div class="font-bold text-slate-900 text-base md:text-lg leading-tight">Scaling Tactile
+                                World Models for Embodied Autonomy</div>
                             <div class="flex items-center gap-2 text-xs text-slate-600 font-semibold mt-2">
-                                <img src="assets/images/speakers/nicolas-jamali.svg" alt="Nicolas Jamali" class="w-8 h-8 rounded-full border border-slate-200">
+                                <img src="assets/images/speakers/nicolas-jamali.svg" alt="Nicolas Jamali"
+                                    class="w-8 h-8 rounded-full border border-slate-200">
                                 <div>
                                     <div>Prof. Nicolas Jamali</div>
                                     <div class="text-[10px] font-normal text-slate-400">Meta AI</div>
@@ -279,13 +352,18 @@
                         </div>
                     </div>
 
-                    <div class="schedule-row keynote p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div
+                        class="schedule-row keynote p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div class="font-mono text-slate-500 font-bold w-32">09:45 – 10:30</div>
                         <div class="flex-1 space-y-1">
-                            <span class="px-2 py-0.5 bg-purple-100 text-purple-800 text-[10px] font-bold rounded">Keynote 2</span>
-                            <div class="font-bold text-slate-900 text-base md:text-lg leading-tight">Generalization in Sim-to-Real Tactile Benchmarks</div>
+                            <span
+                                class="px-2 py-0.5 bg-purple-100 text-purple-800 text-[10px] font-bold rounded">Keynote
+                                2</span>
+                            <div class="font-bold text-slate-900 text-base md:text-lg leading-tight">Generalization in
+                                Sim-to-Real Tactile Benchmarks</div>
                             <div class="flex items-center gap-2 text-xs text-slate-600 font-semibold mt-2">
-                                <img src="assets/images/speakers/yuki-tanaka.svg" alt="Yuki Tanaka" class="w-8 h-8 rounded-full border border-slate-200">
+                                <img src="assets/images/speakers/yuki-tanaka.svg" alt="Yuki Tanaka"
+                                    class="w-8 h-8 rounded-full border border-slate-200">
                                 <div>
                                     <div>Prof. Yuki Tanaka</div>
                                     <div class="text-[10px] font-normal text-slate-400">The University of Tokyo</div>
@@ -294,49 +372,68 @@
                         </div>
                     </div>
 
-                    <div class="schedule-row p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-100/50">
+                    <div
+                        class="schedule-row p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-100/50">
                         <div class="font-mono text-slate-400 font-bold w-32">10:30 – 11:00</div>
-                        <div class="flex-1 font-bold text-slate-600 text-base md:text-lg leading-tight">Morning Coffee Break &amp; Interactive Networking</div>
+                        <div class="flex-1 font-bold text-slate-600 text-base md:text-lg leading-tight">Morning Coffee
+                            Break &amp; Interactive Networking</div>
                     </div>
 
                     <div class="schedule-row oral p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div class="font-mono text-slate-500 font-bold w-32">11:00 – 12:00</div>
                         <div class="flex-1 space-y-1">
-                            <span class="px-2 py-0.5 bg-blue-100 text-blue-800 text-[10px] font-bold rounded">Oral Session 1</span>
-                            <div class="font-bold text-slate-900 text-base md:text-lg leading-tight">Contributed Papers: Active Inference, Predictive Coding &amp; Fusion</div>
+                            <span class="px-2 py-0.5 bg-blue-100 text-blue-800 text-[10px] font-bold rounded">Oral
+                                Session 1</span>
+                            <div class="font-bold text-slate-900 text-base md:text-lg leading-tight">Contributed Papers:
+                                Active Inference, Predictive Coding &amp; Fusion</div>
                             <div class="text-xs text-slate-500">Top-rated accepted paper authors</div>
                         </div>
                     </div>
 
-                    <div class="schedule-row p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-100/50">
+                    <div
+                        class="schedule-row p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-100/50">
                         <div class="font-mono text-slate-400 font-bold w-32">12:00 – 13:30</div>
-                        <div class="flex-1 font-bold text-slate-600 text-base md:text-lg leading-tight">Extended Lunch Break</div>
+                        <div class="flex-1 font-bold text-slate-600 text-base md:text-lg leading-tight">Extended Lunch
+                            Break</div>
                     </div>
 
-                    <div class="schedule-row benchmark p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-amber-50/40">
+                    <div
+                        class="schedule-row benchmark p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-amber-50/40">
                         <div class="font-mono text-amber-700 font-bold w-32">13:30 – 15:30</div>
                         <div class="flex-1 space-y-1">
-                            <span class="px-2 py-0.5 bg-amber-500 text-slate-900 text-[10px] font-bold rounded">Benchmark Showcase</span>
-                            <div class="font-bold text-slate-900 text-base md:text-lg leading-tight">RoboTac 2027 Sim-to-Real Benchmark Challenge Results</div>
-                            <div class="text-xs text-slate-600">Live comparative policy evaluation &amp; results from the 20 hardware-sponsored international research teams.</div>
+                            <span
+                                class="px-2 py-0.5 bg-amber-500 text-slate-900 text-[10px] font-bold rounded">Benchmark
+                                Showcase</span>
+                            <div class="font-bold text-slate-900 text-base md:text-lg leading-tight">RoboTac 2027
+                                Sim-to-Real Benchmark Challenge Results</div>
+                            <div class="text-xs text-slate-600">Live comparative policy evaluation &amp; results from
+                                the 20 hardware-sponsored international research teams.</div>
                         </div>
                     </div>
 
                     <div class="schedule-row oral p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div class="font-mono text-slate-500 font-bold w-32">15:30 – 16:30</div>
                         <div class="flex-1 space-y-1">
-                            <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded">Posters &amp; Demos</span>
-                            <div class="font-bold text-slate-900 text-base md:text-lg leading-tight">Interactive Posters &amp; Hardware Demonstrations</div>
-                            <div class="text-xs text-slate-500">Featuring DM-TacClaw live tactile execution on real robotic arms.</div>
+                            <span
+                                class="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded">Posters
+                                &amp; Demos</span>
+                            <div class="font-bold text-slate-900 text-base md:text-lg leading-tight">Interactive Posters
+                                &amp; Hardware Demonstrations</div>
+                            <div class="text-xs text-slate-500">Featuring DM-TacClaw live tactile execution on real
+                                robotic arms.</div>
                         </div>
                     </div>
 
-                    <div class="schedule-row keynote p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div
+                        class="schedule-row keynote p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div class="font-mono text-slate-500 font-bold w-32">16:30 – 17:30</div>
                         <div class="flex-1 space-y-1">
-                            <span class="px-2 py-0.5 bg-slate-800 text-white text-[10px] font-bold rounded">Panel &amp; Awards</span>
-                            <div class="font-bold text-slate-900 text-base md:text-lg leading-tight">Expert Panel: The Future of Physical Intelligence + Best Paper &amp; Benchmark Awards</div>
-                            <div class="text-xs text-slate-500">Keynote speakers, committee, and benchmark winners.</div>
+                            <span class="px-2 py-0.5 bg-slate-800 text-white text-[10px] font-bold rounded">Panel &amp;
+                                Awards</span>
+                            <div class="font-bold text-slate-900 text-base md:text-lg leading-tight">Expert Panel: The
+                                Future of Physical Intelligence + Best Paper &amp; Benchmark Awards</div>
+                            <div class="text-xs text-slate-500">Keynote speakers, committee, and benchmark winners.
+                            </div>
                         </div>
                     </div>
 
@@ -360,63 +457,72 @@
             <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm max-w-5xl mx-auto">
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-y-8 gap-x-6 text-center sm:text-left">
                     <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                        <img src="assets/images/organizers/mohsen-kaboli.svg" alt="Mohsen Kaboli" class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
+                        <img src="assets/images/organizers/mohsen-kaboli.svg" alt="Mohsen Kaboli"
+                            class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
                         <div class="space-y-1">
                             <h3 class="font-bold text-slate-800 text-sm">Mohsen Kaboli</h3>
                             <p class="text-[11px] text-slate-500">TU/e &amp; BMW Group</p>
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                        <img src="assets/images/organizers/pietro-dardano.png" alt="Pietro Dardano" class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
+                        <img src="assets/images/organizers/pietro-dardano.png" alt="Pietro Dardano"
+                            class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
                         <div class="space-y-1">
                             <h3 class="font-bold text-slate-800 text-sm">Pietro Dardano</h3>
                             <p class="text-[11px] text-slate-500">TU/e &amp; BMW Group</p>
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                        <img src="assets/images/organizers/irene-kuling.svg" alt="Irene A. Kuling" class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
+                        <img src="assets/images/organizers/irene-kuling.svg" alt="Irene A. Kuling"
+                            class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
                         <div class="space-y-1">
                             <h3 class="font-bold text-slate-800 text-sm">Irene A. Kuling</h3>
                             <p class="text-[11px] text-slate-500">TU/e</p>
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                        <img src="assets/images/organizers/robert-haschke.svg" alt="Robert Haschke" class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
+                        <img src="assets/images/organizers/robert-haschke.svg" alt="Robert Haschke"
+                            class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
                         <div class="space-y-1">
                             <h3 class="font-bold text-slate-800 text-sm">Robert Haschke</h3>
                             <p class="text-[11px] text-slate-500">Bielefeld Univ.</p>
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                        <img src="assets/images/organizers/lorenzo-natale.svg" alt="Lorenzo Natale" class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
+                        <img src="assets/images/organizers/lorenzo-natale.svg" alt="Lorenzo Natale"
+                            class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
                         <div class="space-y-1">
                             <h3 class="font-bold text-slate-800 text-sm">Lorenzo Natale</h3>
                             <p class="text-[11px] text-slate-500">IIT &amp; Univ. of Genoa</p>
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                        <img src="assets/images/organizers/yipai-du.svg" alt="Yipai Du" class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
+                        <img src="assets/images/organizers/yipai-du.svg" alt="Yipai Du"
+                            class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
                         <div class="space-y-1">
                             <h3 class="font-bold text-slate-800 text-sm">Yipai Du</h3>
                             <p class="text-[11px] text-slate-500">HKUST</p>
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                        <img src="assets/images/organizers/weihao-yuan.svg" alt="Weihao Yuan" class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
+                        <img src="assets/images/organizers/weihao-yuan.svg" alt="Weihao Yuan"
+                            class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
                         <div class="space-y-1">
                             <h3 class="font-bold text-slate-800 text-sm">Weihao Yuan</h3>
                             <p class="text-[11px] text-slate-500">Nanjing Univ.</p>
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                        <img src="assets/images/organizers/fucai-zhu.svg" alt="Fucai Zhu" class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
+                        <img src="assets/images/organizers/fucai-zhu.svg" alt="Fucai Zhu"
+                            class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
                         <div class="space-y-1">
                             <h3 class="font-bold text-slate-800 text-sm">Fucai Zhu</h3>
                             <p class="text-[11px] text-slate-500">Tohoku Univ.</p>
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-                        <img src="assets/images/organizers/ankit-kumar-shaw.svg" alt="Ankit Kumar Shaw" class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
+                        <img src="assets/images/organizers/ankit-kumar-shaw.svg" alt="Ankit Kumar Shaw"
+                            class="w-12 h-12 rounded-full border border-slate-200 object-cover shrink-0 bg-slate-50">
                         <div class="space-y-1">
                             <h3 class="font-bold text-slate-800 text-sm">Ankit Kumar Shaw</h3>
                             <p class="text-[11px] text-slate-500">Tsinghua Univ. &amp; Daimon</p>
@@ -426,15 +532,19 @@
             </div>
 
             <!-- Industry Partner Banner -->
-            <div class="max-w-5xl mx-auto bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
+            <div
+                class="max-w-5xl mx-auto bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
                 <div class="text-center md:text-left">
                     <h4 class="font-extrabold text-white text-base">Daimon Robotics</h4>
-                    <p class="text-[10px] text-brand-400 font-bold uppercase tracking-widest mt-1">Hardware &amp; Simulation Partner</p>
+                    <p class="text-[10px] text-brand-400 font-bold uppercase tracking-widest mt-1">Hardware &amp;
+                        Simulation Partner</p>
                 </div>
                 <p class="text-xs text-slate-300 md:max-w-sm text-center md:text-left leading-relaxed">
-                    Providing 20 hardware sets (DM-DataClaw &amp; DM-TacClaw) and the RobOmni simulation digital twin for the international benchmark challenge.
+                    Providing 20 hardware sets (DM-DataClaw &amp; DM-TacClaw) and the RobOmni simulation digital twin
+                    for the international benchmark challenge.
                 </p>
-                <a href="https://www.dmrobot.com/en/" target="_blank" class="shrink-0 px-5 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl text-brand-400 font-bold text-xs transition flex items-center gap-2">
+                <a href="https://www.dmrobot.com/en/" target="_blank"
+                    class="shrink-0 px-5 py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl text-brand-400 font-bold text-xs transition flex items-center gap-2">
                     Visit Portal <span class="text-lg leading-none">&rsaquo;</span>
                 </a>
             </div>
@@ -443,31 +553,41 @@
         <!-- FUSED BENCHMARK & HARDWARE SECTION -->
         <section id="benchmark" class="bg-slate-900 text-white py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-                
+
                 <div class="max-w-3xl space-y-4">
-                    <div class="inline-block bg-accent-500/20 text-accent-400 border border-accent-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase">
+                    <div
+                        class="inline-block bg-accent-500/20 text-accent-400 border border-accent-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase">
                         International Sim-to-Real Challenge
                     </div>
                     <h2 class="text-3xl md:text-4xl font-extrabold text-white">
                         Sim-to-Real Benchmark &amp; Hardware Ecosystem
                     </h2>
                     <p class="text-slate-300 text-sm md:text-base leading-relaxed">
-                        To systematically evaluate emerging Tactile World Models, RoboTac 2027 together with <strong>Daimon Robotics</strong> is distributing <strong>20 hardware sets</strong> to selected global academic and research laboratories. Designed with strict structural isomorphism between human data acquisition and robotic actuation, teams will pre-train on the digital twin and validate on real physical hardware.
+                        To systematically evaluate emerging Tactile World Models, RoboTac 2027 together with
+                        <strong>Daimon Robotics</strong> is distributing <strong>20 hardware sets</strong> to selected
+                        global academic and research laboratories. Designed with strict structural isomorphism between
+                        human data acquisition and robotic actuation, teams will pre-train on the digital twin and
+                        validate on real physical hardware.
                     </p>
-                    <button onclick="openHardwareModal()" class="mt-2 px-5 py-2.5 bg-amber-500 text-slate-900 rounded-lg text-sm font-bold hover:bg-amber-400 transition shadow inline-block">
+                    <button onclick="openHardwareModal()"
+                        class="mt-2 px-5 py-2.5 bg-amber-500 text-slate-900 rounded-lg text-sm font-bold hover:bg-amber-400 transition shadow inline-block">
                         Submit Hardware Grant Application &#8594;
                     </button>
                 </div>
 
                 <!-- 3 Pillar Hardware Grid -->
                 <div class="grid md:grid-cols-3 gap-6 pt-4 border-t border-slate-800">
-                    
-                    <div class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700/80 flex flex-row gap-4 items-start">
-                        <img src="assets/images/hardware/DataClaw.jpg" alt="DM-DataClaw" class="w-32 h-32 object-cover shrink-0 scale-110" style="-webkit-mask-image: radial-gradient(circle, black 40%, transparent 70%); mask-image: radial-gradient(circle, black 40%, transparent 70%);">
+
+                    <div
+                        class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700/80 flex flex-row gap-4 items-start">
+                        <img src="assets/images/hardware/DataClaw.jpg" alt="DM-DataClaw"
+                            class="w-32 h-32 object-cover shrink-0 scale-110"
+                            style="-webkit-mask-image: radial-gradient(circle, black 40%, transparent 70%); mask-image: radial-gradient(circle, black 40%, transparent 70%);">
                         <div class="flex-1 space-y-1.5 text-left">
                             <h3 class="text-sm font-bold text-white">DM-DataClaw</h3>
                             <p class="text-[10px] text-slate-300 leading-relaxed">
-                                A specialized Data-as-a-Service (DaaS) instrument engineered for unconstrained, handheld multimodal tactile demonstration.
+                                A specialized Data-as-a-Service (DaaS) instrument engineered for unconstrained, handheld
+                                multimodal tactile demonstration.
                             </p>
                             <div class="text-[9px] font-mono text-brand-400 pt-1 border-t border-slate-700/50 mt-1">
                                 Stereo Vision + Wrist Fisheye + Tactile + IMU
@@ -475,12 +595,16 @@
                         </div>
                     </div>
 
-                    <div class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700/80 flex flex-row gap-4 items-start">
-                        <img src="assets/images/hardware/DataClaw2.png" alt="DM-TacClaw" class="w-32 h-32 object-cover shrink-0 scale-110" style="-webkit-mask-image: radial-gradient(circle, black 40%, transparent 70%); mask-image: radial-gradient(circle, black 40%, transparent 70%);">
+                    <div
+                        class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700/80 flex flex-row gap-4 items-start">
+                        <img src="assets/images/hardware/DataClaw2.png" alt="DM-TacClaw"
+                            class="w-32 h-32 object-cover shrink-0 scale-110"
+                            style="-webkit-mask-image: radial-gradient(circle, black 40%, transparent 70%); mask-image: radial-gradient(circle, black 40%, transparent 70%);">
                         <div class="flex-1 space-y-1.5 text-left">
                             <h3 class="text-sm font-bold text-white">DM-TacClaw</h3>
                             <p class="text-[10px] text-slate-300 leading-relaxed">
-                                An electrically actuated tactile robotic gripper maintaining strict <strong>isomorphic structural parity</strong> to the DM-DataClaw.
+                                An electrically actuated tactile robotic gripper maintaining strict <strong>isomorphic
+                                    structural parity</strong> to the DM-DataClaw.
                             </p>
                             <div class="text-[9px] font-mono text-accent-400 pt-1 border-t border-slate-700/50 mt-1">
                                 100mm stroke, 0.1mm precision, uint16
@@ -488,14 +612,17 @@
                         </div>
                     </div>
 
-                    <div class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700/80 flex flex-row gap-4 items-start">
-                        <div class="w-32 h-32 shrink-0 rounded-lg bg-slate-900 flex items-center justify-center border border-slate-700 text-center px-1">
+                    <div
+                        class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700/80 flex flex-row gap-4 items-start">
+                        <div
+                            class="w-32 h-32 shrink-0 rounded-lg bg-slate-900 flex items-center justify-center border border-slate-700 text-center px-1">
                             <span class="text-purple-400 font-mono text-[9px] leading-tight">[ Isaac Sim Twin ]</span>
                         </div>
                         <div class="flex-1 space-y-1.5 text-left">
                             <h3 class="text-sm font-bold text-white">RobOmni</h3>
                             <p class="text-[10px] text-slate-300 leading-relaxed">
-                                Offers an exact 1:1 digital twin of the DM-TacClaw gripper with contact physics and material compliance.
+                                Offers an exact 1:1 digital twin of the DM-TacClaw gripper with contact physics and
+                                material compliance.
                             </p>
                             <div class="text-[9px] font-mono text-purple-400 pt-1 border-t border-slate-700/50 mt-1">
                                 Public access for community benchmarking
@@ -509,21 +636,25 @@
                 <div class="bg-slate-800/50 rounded-2xl p-6 md:p-8 border border-slate-700/60 space-y-6">
                     <div>
                         <h3 class="text-xl font-bold text-white">Benchmark Evaluation Criteria</h3>
-                        <p class="text-sm text-slate-400 mt-1">Submissions are evaluated across three standardized dimensions without requiring local hardware.</p>
+                        <p class="text-sm text-slate-400 mt-1">Submissions are evaluated across three standardized
+                            dimensions without requiring local hardware.</p>
                     </div>
 
                     <div class="grid md:grid-cols-3 gap-6">
                         <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-700/80">
                             <h4 class="font-bold text-brand-400 text-sm mb-2">1. Simulated Efficacy (30%)</h4>
-                            <p class="text-xs text-slate-300 leading-relaxed">Success rate, execution velocity, and contact stability within RobOmni Isaac Sim across grasping and wiping tasks.</p>
+                            <p class="text-xs text-slate-300 leading-relaxed">Success rate, execution velocity, and
+                                contact stability within RobOmni Isaac Sim across grasping and wiping tasks.</p>
                         </div>
                         <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-700/80">
                             <h4 class="font-bold text-accent-400 text-sm mb-2">2. Sim-to-Real Transfer (40%)</h4>
-                            <p class="text-xs text-slate-300 leading-relaxed">Zero-shot and few-shot transfer performance from digital twin to real DM-TacClaw hardware under real-world friction.</p>
+                            <p class="text-xs text-slate-300 leading-relaxed">Zero-shot and few-shot transfer
+                                performance from digital twin to real DM-TacClaw hardware under real-world friction.</p>
                         </div>
                         <div class="p-4 bg-slate-900/80 rounded-xl border border-slate-700/80">
                             <h4 class="font-bold text-amber-400 text-sm mb-2">3. Predictive Fidelity (30%)</h4>
-                            <p class="text-xs text-slate-300 leading-relaxed">Quantitative evaluation of latent state prediction accuracy for future tactile frames, shear vectors, and slip detection.</p>
+                            <p class="text-xs text-slate-300 leading-relaxed">Quantitative evaluation of latent state
+                                prediction accuracy for future tactile frames, shear vectors, and slip detection.</p>
                         </div>
                     </div>
                 </div>
@@ -533,18 +664,24 @@
 
         <!-- CALL FOR PAPERS (GOOGLE FORM SUBMISSION) -->
         <section id="cfp" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-            <div class="bg-gradient-to-br from-slate-900 to-brand-950 text-white rounded-3xl p-8 md:p-12 border border-slate-800 shadow-xl space-y-8">
-                
-                <div class="flex flex-col md:flex-row justify-between md:items-center gap-6 border-b border-slate-800 pb-8">
+            <div
+                class="bg-gradient-to-br from-slate-900 to-brand-950 text-white rounded-3xl p-8 md:p-12 border border-slate-800 shadow-xl space-y-8">
+
+                <div
+                    class="flex flex-col md:flex-row justify-between md:items-center gap-6 border-b border-slate-800 pb-8">
                     <div class="space-y-2 max-w-2xl">
-                        <span class="text-xs font-bold uppercase tracking-wider text-brand-400">Academic Submissions</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand-400">Academic
+                            Submissions</span>
                         <h2 class="text-3xl font-extrabold text-white">Call for Papers &amp; Contributions</h2>
                         <p class="text-slate-300 text-sm">
-                            We invite original contributions addressing Tactile World Models, active inference, sim-to-real transfer, and physical foundation models. Note: OpenReview was used for the initial workshop proposal. Final paper submissions will be collected via Google Form.
+                            We invite original contributions addressing Tactile World Models, active inference,
+                            sim-to-real transfer, and physical foundation models. Note: OpenReview was used for the
+                            initial workshop proposal. Final paper submissions will be collected via Google Form.
                         </p>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <a href="#google-form" class="px-6 py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm rounded-xl text-center shadow-lg transition">
+                        <a href="#google-form"
+                            class="px-6 py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm rounded-xl text-center shadow-lg transition">
                             Submit Paper via Google Form &#8599;
                         </a>
                     </div>
@@ -557,22 +694,25 @@
                     </h3>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left">
                         <div class="space-y-1">
-                            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Paper Submission</div>
+                            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Paper Submission
+                            </div>
                             <div class="font-bold text-white text-sm">April 15th, 2027</div>
                         </div>
                         <div class="space-y-1">
-                            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Notification</div>
+                            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Notification
+                            </div>
                             <div class="font-bold text-brand-400 text-sm">April 24th, 2027</div>
                         </div>
                         <div class="space-y-1">
-                            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Camera-Ready</div>
+                            <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Camera-Ready
+                            </div>
                             <div class="font-bold text-white text-sm">April 30th, 2027</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8">
-                    
+
                     <!-- Research Topics -->
                     <div class="space-y-4">
                         <h3 class="text-lg font-bold text-white flex items-center gap-2">
@@ -595,13 +735,17 @@
                         </h3>
                         <div class="space-y-3 text-xs text-slate-300">
                             <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-                                <span class="font-bold text-white">Full Papers (Up to 6 pages):</span> Standard IEEE two-column format. Accepted papers will be featured in oral and spotlight sessions.
+                                <span class="font-bold text-white">Full Papers (Up to 6 pages):</span> Standard IEEE
+                                two-column format. Accepted papers will be featured in oral and spotlight sessions.
                             </div>
                             <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-                                <span class="font-bold text-white">Extended Abstracts (2-4 pages):</span> Ongoing work, initial hardware concepts, and position papers for interactive poster sessions.
+                                <span class="font-bold text-white">Extended Abstracts (2-4 pages):</span> Ongoing work,
+                                initial hardware concepts, and position papers for interactive poster sessions.
                             </div>
                             <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-                                <span class="font-bold text-amber-400">Supplementary Video Requirement:</span> Submissions demonstrating hardware experiments are strongly encouraged to submit a clip showing model prediction vs real rollout.
+                                <span class="font-bold text-amber-400">Supplementary Video Requirement:</span>
+                                Submissions demonstrating hardware experiments are strongly encouraged to submit a clip
+                                showing model prediction vs real rollout.
                             </div>
                         </div>
                     </div>
@@ -626,12 +770,16 @@
             <div class="space-y-8">
                 <!-- Gold Tier -->
                 <div class="space-y-4">
-                    <h3 class="text-center text-sm font-bold text-amber-500 uppercase tracking-widest border-b border-slate-200 pb-2">Gold Sponsors</h3>
+                    <h3
+                        class="text-center text-sm font-bold text-amber-500 uppercase tracking-widest border-b border-slate-200 pb-2">
+                        Gold Sponsors</h3>
                     <div class="flex justify-center items-center gap-8 flex-wrap">
-                        <div class="h-20 w-48 bg-white border border-slate-200 rounded-xl shadow-sm flex items-center justify-center p-4">
+                        <div
+                            class="h-20 w-48 bg-white border border-slate-200 rounded-xl shadow-sm flex items-center justify-center p-4">
                             <span class="text-slate-400 font-bold text-sm">[ Gold Logo 1 ]</span>
                         </div>
-                        <div class="h-20 w-48 bg-white border border-slate-200 rounded-xl shadow-sm flex items-center justify-center p-4">
+                        <div
+                            class="h-20 w-48 bg-white border border-slate-200 rounded-xl shadow-sm flex items-center justify-center p-4">
                             <span class="text-slate-400 font-bold text-sm">[ Gold Logo 2 ]</span>
                         </div>
                     </div>
@@ -639,15 +787,20 @@
 
                 <!-- Silver Tier -->
                 <div class="space-y-4">
-                    <h3 class="text-center text-sm font-bold text-slate-400 uppercase tracking-widest border-b border-slate-200 pb-2">Silver Sponsors</h3>
+                    <h3
+                        class="text-center text-sm font-bold text-slate-400 uppercase tracking-widest border-b border-slate-200 pb-2">
+                        Silver Sponsors</h3>
                     <div class="flex justify-center items-center gap-6 flex-wrap">
-                        <div class="h-16 w-40 bg-white border border-slate-200 rounded-lg flex items-center justify-center p-3">
+                        <div
+                            class="h-16 w-40 bg-white border border-slate-200 rounded-lg flex items-center justify-center p-3">
                             <span class="text-slate-300 font-bold text-xs">[ Silver Logo 1 ]</span>
                         </div>
-                        <div class="h-16 w-40 bg-white border border-slate-200 rounded-lg flex items-center justify-center p-3">
+                        <div
+                            class="h-16 w-40 bg-white border border-slate-200 rounded-lg flex items-center justify-center p-3">
                             <span class="text-slate-300 font-bold text-xs">[ Silver Logo 2 ]</span>
                         </div>
-                        <div class="h-16 w-40 bg-white border border-slate-200 rounded-lg flex items-center justify-center p-3">
+                        <div
+                            class="h-16 w-40 bg-white border border-slate-200 rounded-lg flex items-center justify-center p-3">
                             <span class="text-slate-300 font-bold text-xs">[ Silver Logo 3 ]</span>
                         </div>
                     </div>
@@ -655,18 +808,24 @@
 
                 <!-- Bronze Tier -->
                 <div class="space-y-4">
-                    <h3 class="text-center text-sm font-bold text-amber-700 uppercase tracking-widest border-b border-slate-200 pb-2">Bronze Sponsors</h3>
+                    <h3
+                        class="text-center text-sm font-bold text-amber-700 uppercase tracking-widest border-b border-slate-200 pb-2">
+                        Bronze Sponsors</h3>
                     <div class="flex justify-center items-center gap-4 flex-wrap">
-                        <div class="h-12 w-32 bg-white border border-slate-200 rounded-md flex items-center justify-center p-2">
+                        <div
+                            class="h-12 w-32 bg-white border border-slate-200 rounded-md flex items-center justify-center p-2">
                             <span class="text-slate-300 font-bold text-[10px]">[ Bronze 1 ]</span>
                         </div>
-                        <div class="h-12 w-32 bg-white border border-slate-200 rounded-md flex items-center justify-center p-2">
+                        <div
+                            class="h-12 w-32 bg-white border border-slate-200 rounded-md flex items-center justify-center p-2">
                             <span class="text-slate-300 font-bold text-[10px]">[ Bronze 2 ]</span>
                         </div>
-                        <div class="h-12 w-32 bg-white border border-slate-200 rounded-md flex items-center justify-center p-2">
+                        <div
+                            class="h-12 w-32 bg-white border border-slate-200 rounded-md flex items-center justify-center p-2">
                             <span class="text-slate-300 font-bold text-[10px]">[ Bronze 3 ]</span>
                         </div>
-                        <div class="h-12 w-32 bg-white border border-slate-200 rounded-md flex items-center justify-center p-2">
+                        <div
+                            class="h-12 w-32 bg-white border border-slate-200 rounded-md flex items-center justify-center p-2">
                             <span class="text-slate-300 font-bold text-[10px]">[ Bronze 4 ]</span>
                         </div>
                     </div>
@@ -686,52 +845,69 @@
                 </div>
                 <div class="flex flex-wrap justify-center gap-6 text-slate-400">
                     <a href="http://www.robotac.eu/robotac2027" class="hover:text-white">www.robotac.eu/robotac2027</a>
-                    <a href="https://openreview.net/forum?id=xkAKGJMNir" target="_blank" class="hover:text-white">Workshop Proposal (OpenReview)</a>
+                    <a href="https://openreview.net/forum?id=xkAKGJMNir" target="_blank"
+                        class="hover:text-white">Workshop Proposal (OpenReview)</a>
                     <a href="mailto:robotac@bmw.de" class="hover:text-white">Contact Organizers</a>
                 </div>
             </div>
             <div class="text-slate-600 text-[11px] text-center md:text-left border-t border-slate-800/80 pt-6">
-                Notice: If you are not an author of a submission and would like to be removed or have questions regarding benchmark hardware distribution, please contact the lead organizer at <a href="mailto:robotac@bmw.de" class="text-slate-400 underline">robotac@bmw.de</a>.
+                Notice: If you are not an author of a submission and would like to be removed or have questions
+                regarding benchmark hardware distribution, please contact the lead organizer at <a
+                    href="mailto:robotac@bmw.de" class="text-slate-400 underline">robotac@bmw.de</a>.
             </div>
         </div>
     </footer>
 
     <!-- HARDWARE APPLICATION MODAL SIMULATOR -->
-    <div id="hardware-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div id="hardware-modal"
+        class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-6 relative border border-slate-200">
-            <button onclick="closeHardwareModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-xl font-bold">&times;</button>
-            
+            <button onclick="closeHardwareModal()"
+                class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-xl font-bold">&times;</button>
+
             <div class="space-y-1">
-                <span class="text-[10px] font-bold text-brand-600 uppercase tracking-wider font-mono">Daimon Hardware Grant Application</span>
+                <span class="text-[10px] font-bold text-brand-600 uppercase tracking-wider font-mono">Daimon Hardware
+                    Grant Application</span>
                 <h3 class="text-xl font-extrabold text-slate-900">Request 1 of 20 Hardware Sets</h3>
-                <p class="text-xs text-slate-500">Includes DM-DataClaw, DM-TacClaw, and RobOmni Isaac Sim digital twin access.</p>
+                <p class="text-xs text-slate-500">Includes DM-DataClaw, DM-TacClaw, and RobOmni Isaac Sim digital twin
+                    access.</p>
             </div>
 
             <form onsubmit="handleHardwareFormSubmit(event)" class="space-y-4 text-xs">
                 <div>
                     <label class="block font-bold text-slate-700 mb-1">Principal Investigator (PI) Name</label>
-                    <input type="text" required placeholder="e.g. Prof. Jane Doe" class="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none">
+                    <input type="text" required placeholder="e.g. Prof. Jane Doe"
+                        class="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none">
                 </div>
                 <div>
                     <label class="block font-bold text-slate-700 mb-1">Laboratory &amp; University/Institution</label>
-                    <input type="text" required placeholder="e.g. Robotics &amp; Embodied AI Lab, University" class="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none">
+                    <input type="text" required placeholder="e.g. Robotics &amp; Embodied AI Lab, University"
+                        class="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none">
                 </div>
                 <div>
                     <label class="block font-bold text-slate-700 mb-1">Institutional Email</label>
-                    <input type="email" required placeholder="pi@university.edu" class="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none">
+                    <input type="email" required placeholder="pi@university.edu"
+                        class="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none">
                 </div>
                 <div>
-                    <label class="block font-bold text-slate-700 mb-1">Brief Research Proposal Summary (100 words)</label>
-                    <textarea required rows="3" placeholder="Outline how your group will use Tactile World Models for grasping or manipulation benchmarking..." class="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none"></textarea>
+                    <label class="block font-bold text-slate-700 mb-1">Brief Research Proposal Summary (100
+                        words)</label>
+                    <textarea required rows="3"
+                        placeholder="Outline how your group will use Tactile World Models for grasping or manipulation benchmarking..."
+                        class="w-full p-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none"></textarea>
                 </div>
 
-                <div id="form-feedback" class="hidden p-3 bg-emerald-50 text-emerald-800 rounded-lg text-xs font-medium">
+                <div id="form-feedback"
+                    class="hidden p-3 bg-emerald-50 text-emerald-800 rounded-lg text-xs font-medium">
                     Application intent submitted successfully! You will receive confirmation at the provided PI email.
                 </div>
 
                 <div class="flex justify-end space-x-2 pt-2">
-                    <button type="button" onclick="closeHardwareModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-bold">Cancel</button>
-                    <button type="submit" class="px-5 py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-lg font-bold shadow">Submit Hardware Request</button>
+                    <button type="button" onclick="closeHardwareModal()"
+                        class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-bold">Cancel</button>
+                    <button type="submit"
+                        class="px-5 py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-lg font-bold shadow">Submit
+                        Hardware Request</button>
                 </div>
             </form>
         </div>
@@ -814,4 +990,5 @@
         }
     </script>
 </body>
+
 </html>
